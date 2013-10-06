@@ -1,0 +1,39 @@
+<template name="b3Alert">
+<div class="b3 alert alert-{{type}} {{block}} {{soundoff}} fade in">
+    <span class="{{glyphicon}}"></span>
+    <button id="{{_id}}" type="button" class="close" aria-hidden="true">x</button>
+     {{#if dialog}}
+       <h4>{{header}}</h4>
+       <p>{{text}}</p>
+       {{#if confirmation}}
+         <p>
+         <a class="{{buttonClass}}" href="{{buttonLink}}">{{buttonText}}</a>
+         <a class="{{altButtonClass}}" href="{{altButtonLink}}">{{altButtonText}}</a>
+         </p>
+       {{else}}
+         <input type="{{inputType}}" id="{{_id}}">
+       {{/if}}
+     {{else}}
+     <span class="label label-{{type}}">
+         {{header}}
+     </span>
+         {{text}}
+     {{/if}}
+  </div>
+</template>
+
+<template name="b3AlertList">
+<ul class="b3AlertList {{vertical}} {{horizontal}} list-group">
+    {{#each alerts}}
+      {{> b3Alert }}
+    {{/each}}
+</ul>
+</template>
+
+<template name="b3AlertsContainer">
+<div>
+    {{#each regions}}
+      {{> b3AlertList }}
+    {{/each}}
+</div>
+</template>
