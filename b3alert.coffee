@@ -54,10 +54,10 @@ Alert::setDefaults = (defaults) ->
 
 @b3 = do ->
     {
-        alertError: Alert::curry { header: "danger", type: 'danger'}
+        alertDanger: Alert::curry { header: "danger", type: 'danger'}
         alertSuccess: Alert::curry { header: "success", type: 'success'}
         alertInfo: Alert::curry { header: "info", type: 'info'}
-        alertWarn: Alert::curry { header: "warning", type: 'warning'}
+        alertWarning: Alert::curry { header: "warning", type: 'warning'}
         alertSetDefaults: Alert::setDefaults
         alertDialog: Alert::curry { dialog: true, block: 'alert-block'}
         alertPrimary: Alert::curry { header: "primary" }
