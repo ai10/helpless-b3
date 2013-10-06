@@ -1,19 +1,29 @@
 <template name="b3Alert">
 <div class="b3 alert alert-{{type}} {{block}} {{soundoff}} fade in">
     <span class="{{glyphicon}}"></span>
+    {{#unless hover}}
     <button id="{{_id}}" type="button" class="close" aria-hidden="true">x</button>
+    {{/unless}}
      {{#if dialog}}
-       <h4>{{header}}</h4>
-       <p>{{text}}</p>
        {{#if confirmation}}
+         <h4>{{header}}</h4>
+         <p>{{text}}</p>
          <p>
-         <a class="{{buttonClass}}" href="{{buttonLink}}">{{buttonText}}</a>
-         <a class="{{altButtonClass}}" href="{{altButtonLink}}">{{altButtonText}}</a>
+           <a class="{{buttonClass}}" href="{{buttonLink}}">{{buttonText}}</a>
+           <a class="{{altButtonClass}}" href="{{altButtonLink}}">{{altButtonText}}</a>
          </p>
-       {{else}}
-         <input type="{{inputType}}" id="{{_id}}">
-       {{/if}}
-     {{else}}
+         {{else}} <!-- confirmation -->
+         <form role="form">
+             <div class="form-group">
+                 <label for="dialogForm">{{header}}</label>
+                 <input type="{{inputType}}" id="{{_id}}" class-"form-control" placeholder="{{header}}">
+             </div><!-- /.form-group -->
+             <button type="submit" class="btn btn-primary">
+                 <span class="glyphicon glyphicon-send">Submit</span>
+             </button>
+         </form>
+         {{/if}} <!--- /dialog -->
+       {{else}} <!-- /standard -->
      <span class="label label-{{type}}">
          {{header}}
      </span>

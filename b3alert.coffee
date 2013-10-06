@@ -60,7 +60,10 @@ Alert::setDefaults = (defaults) ->
         alertWarning: Alert::curry { header: "warning", type: 'warning'}
         alertSetDefaults: Alert::setDefaults
         alertDialog: Alert::curry { dialog: true, block: 'alert-block'}
+        alertConfirmation: Alert::curry { dialog: true, confirmation: true, block: 'alert-block'}
         alertPrimary: Alert::curry { header: "primary" }
+        alertConfirmPassword: Alert::curry { dialog: true, type: 'info', block: 'alert-block', inputType: 'password', header: 'Confirm Password', icon: "glyphicon glyphicon-certificate" }
+        alertConfirmEmail: Alert::curry { dialog: true, type: 'info', block: 'alert-block', inputType: 'text', header: 'Confirm Email', icon: 'glyphicon glyphicon-certificate' }
     }
 
 Template.b3AlertList.helpers
@@ -102,6 +105,9 @@ Template.b3Alert.events
         e.preventDefault()
         if @hover is true
             Alerts.remove { _id: @_id }
+    'submit': (e, t) ->
+        e.preventDefault()
+        console.log "submit", e.target[0].value
 
 Template.b3Alert.helpers
     glyphicon: ->
@@ -110,7 +116,7 @@ Template.b3Alert.helpers
                 when 'info'
                     return "glyphicon glyphicon-tag"
                 when 'danger'
-                    return "glyphicon glyphicon-warning-sign"
+                    return "glyphicon glyphicon-ban-circle"
                 when 'warning'
                     return "glyphicon glyphicon-warning-sign"
                 when 'success'
