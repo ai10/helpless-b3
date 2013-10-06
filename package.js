@@ -7,6 +7,6 @@ Package.on_use(function (api) {
 
     api.add_files([
     'bootstrap.lessimport',
-    'b3alert.html', 'b3alert.coffee', 'b3.less'], ['client']);
+    'b3alert.html', 'b3alert.coffee', 'b3alert.less'], ['client']);
 });
 
