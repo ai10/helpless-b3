@@ -108,6 +108,9 @@ Template.b3Alert.events
     'submit': (e, t) ->
         e.preventDefault()
         console.log "submit", e.target[0].value
+    'input': (e, t) ->
+        e.preventDefault()
+        console.log 'validity', e.target.validity.valid, @
 
 Template.b3Alert.helpers
     glyphicon: ->
