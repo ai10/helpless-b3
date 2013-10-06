@@ -14,6 +14,8 @@ format
 
      b3.alert#{type} text, options
 
+```
+
 
 Alerts may be of standardi Bootstrap3 types:
 
@@ -40,4 +42,5 @@ and may be positioned in any of 9 regional 'b3AlertList' containers
 
      b3.alertDanger "This is an danger alert.", { header: 'Error.', layout: 'topRight' }
 
+```
 
