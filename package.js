@@ -1,13 +1,24 @@
 Package.describe({
-    summary: "Bootstrap 3 with Meteor style Javascripts., ..."
+    summary: "Bootstrap 3 LESS w/ Meteor Helpers ..."
 });
 
 Package.on_use(function (api) {
-    api.use(['deps', 'templating', 'less', 'underscore', 'jquery', 'coffeescript']);
+    api.use(['standard-app-packages', 'less', 'underscore', 'jquery', 'coffeescript']);
 
     api.add_files([
     'lib/js/dropdown.js',
-    'bootstrap.lessimport',
-    'b3alert.html', 'b3alert.coffee', 'b3alert.less'], ['client']);
+    'lib/js/tooltip.js',
+    'lib/js/popover.js',
+    'lib/js/transition.js',
+    'b3.coffee',
+    'b3.less',
+    'parsley-b3.coffee',
+    'alerts/alert-b3.html', 
+    'alerts/alert-b3.coffee', 
+    'alerts/alert-b3.less',
+    'inputs/inputGroups-b3.coffee',
+    'inputs/navbarSign.html',
+    'inputs/navbarSign.coffee',
+    'inputs/navbarSign.less'], ['client']);
 });
 
