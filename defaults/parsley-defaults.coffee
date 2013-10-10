@@ -1,4 +1,4 @@
-b3.parsley = {
+@b3.parsley = {
         inputs: 'input'
         excluded: 'input[type=hidden]'
         trigger: 'input change focusin'

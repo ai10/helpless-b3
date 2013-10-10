@@ -1,4 +1,4 @@
 
 @b3 = {}
-b3.eventHandlers = {}
+@b3.eventHandlers = {}
 

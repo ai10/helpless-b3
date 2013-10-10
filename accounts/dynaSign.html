@@ -1,0 +1,47 @@
+<template name="dynaSign">
+<form id="dynaSign" class="navbar-form navbar-right">
+    <div data-title="Email sign in."
+      data-original-title="Email sign in."
+      data-content="Valid Email, e.g. name@mail.com ...."
+      data-id="IdentityInput"
+      data-trigger='manual'
+     data-placement="auto"
+     id="IdentityInput"
+     class="form-group {{identityHidden}}"
+     >
+     <input class="form-control"
+         type="text"
+         placeholder="email sign in ..."
+         id="IdentityInput"
+         data-type='email'
+         data-trigger="keyup focusout focusin"
+         data-required='true'
+         >
+     </div>
+     <div data-title="Password"
+          data-original-title="Password"
+          data-id="passwordInput"
+          data-placement="auto"
+          data-trigger='manual'
+         id="passwordInput"
+         class="form-group {{passwordHidden}}"
+      >
+         <input class="form-control navPassword"
+             type="password"
+             placeholder="Password"
+             id="passwordInput"
+             data-trigger="keyup focusin"
+             data-hasnumber='1'
+             data-hasletter='1'
+             data-required='true'
+             data-minlength='6'
+             >
+         </div>
+         <div class="form-group {{signInHidden}}">
+         <input id='navbarSign' type="submit" value='Sign In.' class="navButton btn btn-success form-control">
+        </div>
+        <div class='form-group {{signUpHidden}}'>
+             <button type="button" id="signUp" class="btn btn-info form-control">Sign Up.</button>
+         </div>
+ </form>
+</template>

@@ -1,0 +1,108 @@
+<template name='signUpPage'>
+  <div class="container">
+    <div class="row">
+      {{#if logo}}
+        <div class="entry-logo">
+            <a href="/"><img src="{{logo}}" alt="logo"></a>
+        </div>
+        {{/if}}
+    </div>
+  <div class="col-md-4 col-md-offset-4">
+    {{#if loginServices}}
+      <div class="container">
+        {{#each loginServices}}
+        <p>entry social</p>
+        {{/each}}
+      </div>
+    {{/if}}
+    <form class="form-horizontal" id='signUp'>
+        <fieldset>
+            <legend class="label label-primary">Welcome:</legend>
+        <div class="form-group">
+            <label class="label label-primary">First name</label>
+            <span> (optional.)</span>
+            <input type="string"
+                 id="firstName"
+                 class="form-control" 
+                 value=''
+                 placeholder="First name.">
+        </div>
+        <div class="form-group">
+            <label class="label label-primary">Last name</label>
+            <span> (optional.)</span>
+            <input type="string"
+                   id="lastName"
+                   class="form-control"
+                   value=''
+                   placeholder="Last name.">
+        </div>
+        <div class="form-group"
+            data-title="Email sign in."
+            data-original-title="Email sign in."
+            data-content="Valid email, e.g. name@mail.com ..."
+            data-id='emailInput'
+            data-trigger='manual'
+            data-placement='auto'
+            id='emailInput'
+            >
+          <label class="label label-primary">Email</label>
+          <input type="email"
+                 id='emailInput'
+                 data-type='email'
+                 data-trigger='keyup focusin focusout'
+                 data-required='true'
+                 class="form-control" 
+                 value='{{userEmail}}'
+                 placeholder="Email"
+                 >
+        </div>
+        <div class="form-group"
+            data-title="Confirm email ..."
+            data-original-title="Email sign in."
+            data-content="Valid email, e.g. name@mail.com ..."
+            data-id='emailInput'
+            data-trigger='manual'
+            data-placement='auto'
+            id='emailInput'
+            >
+          <label class="label label-primary">Re-enter email</label>
+          <input type="email"
+                 id='emailInput'
+                 data-type='email'
+                 data-trigger='keyup focusin focusout'
+                 data-required='true'
+                 class="form-control" 
+                 data-equals='input#emailInput'
+                 placeholder="Re-enter email"
+                 >
+        </div>
+        <div class="form-group"
+            data-title="Password"
+            data-original-title="Password"
+            data-id="passwordInput"
+            data-placement='auto'
+            data-trigger='manual'
+            id='passwordInput'
+            >
+          <label class="label label-primary">Password</label>
+          <input type="password"
+                 class="form-control"
+                 placeholder="Password"
+                 id="passwordInput"
+                 data-trigger="keyup focusin focusout"
+                 data-hasnumber='1'
+                 data-hasletters='1'
+                 data-required='true'
+                 data-minlength='6'
+                 >
+        </div>
+        <button type="submit" class="submit btn btn-default">Sign up</button>
+    </form>
+    <p class="">Sign up indicates your consent to the
+      <a href="{{privacyUrl}}">Privacy Policy</a> and
+      <a href="{{termsUrl}}">Terms of Use</a>.
+    </p>
+  </div>
+</div>
+</template>
+

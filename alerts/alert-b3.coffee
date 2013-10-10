@@ -1,3 +1,4 @@
+b3 = @b3
 Alerts = new Meteor.Collection null
 
 Alert = (options)->
@@ -73,10 +74,8 @@ _.each alertsCurries, (v, k) ->
 
 Template.b3AlertList.helpers
     alerts: ->
-        console.log 'alerts', @
         Alerts.find({region: @region}).fetch()
     vertical: ->
-        console.log 'vertival', @
         if /top/i.test(@region)
             return 'topAlert'
         if /middle/i.test(@region)
@@ -84,7 +83,6 @@ Template.b3AlertList.helpers
         if /bottom/i.test(@region)
             return 'bottomAlert'
     horizontal: ->
-        console.log 'horiz', @
         if /left/i.test(@region)
             return 'leftAlert'
         if /center/i.test(@region)
