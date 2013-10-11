@@ -1,21 +1,3 @@
-b3.accounts = {
-    loginServices: false
-    logo: '/images/logo.jpeg'
-    askNames: true
-    askEmail: true
-}
-
-Meteor.methods
-    'preexistingUser': (email) ->
-        check email, String
-
-        if Meteor.isServer
-            user = Meteor.users.findOne { emails: {address: email}}
-            if user?
-                return user
-            else
-                return false
-
 Router.map ->
 
   @route "signInPage",
@@ -27,7 +9,41 @@ Router.map ->
   @route "forgotPassword",
     path: "/forgot-password"
 
+b3.accounts = {
+    loginServices: false
+    logo: '/images/logo.jpeg'
+    askNames: true
+    askEmail: true
+    dashboard: '/'
+}
+
+
 b3.accountEvents = {}
+b3.accountEvents.inputEmail = (e, t) ->
+    f = t.firstNode || e.target.f
+    console.log 'inputEmail', f
+    valid =$(f).find('input#emailInput').parsley('validate')
+    if valid
+        console.log 'valid', e.target.value
+        Session.set 'userEmail', e.target.value
+
+        Session.set 'dynaEmailValid', true
+        Meteor.call 'preexistingUser', e.target.value, (err, result)->
+            console.log 'preexisting user result', result
+            if result is false
+                Session.set 'dynaUserExisting', false
+                b3.flashInfo ' email not found..,', {single: 'dynaUser', header: 'Sign up!'}
+            else
+                if result?
+                    console.log 'preresult', result
+                    firstname = result.profile?.firstname or= 'Back!'
+                    Session.set 'dynaUserExisting', true
+                    b3.flashSuccess firstname, { header: 'Welcome', single: 'dynaUser' }
+                    b3.accounts.preexistingUser = result
+
+    console.log 'invalid email'
+
+
 b3.accountEvents.signIn = (e, t)->
     console.log 'signIn'
     hasErrors = false
@@ -58,26 +74,37 @@ b3.accountEvents.signIn = (e, t)->
             b3.flashSuccess 'Welcome back.'
 
 b3.accountEvents.signUp = (e,t) ->
-    console.log ' b3 signup'
-    hasErrors = false
+    console.log ' b3 signupi', e, t
+    hasError = false
     e.preventDefault()
-    f= t.firstNode.form
-    $f = $ f
+    f = t.firstNode?.form || e.target?.form
+    console.log 'hasError', hasError, f
+
+    $f= $ f
+
     if not $f.find('input#passwordInput').parsley('isValid')
+
         b3.flashError 'Password Invalid'
         hasError = true
+
+    console.log 'password valid', hasError
 
     if not $f.find('input#emailInput').parsley('isValid')
         b3.flashError 'e-mail is invalid.'
         hasError = true
 
+    console.log 'email valid', hasError
+
     if not $f.find('input#emailReEnter').parsley('isValid')
         b3.flashError 'e-mails must match.'
         hasError = true
-    if hasErrors
+
+    console.log 'reneter', hasError
+
+    if hasError
         Router.go '/sign-up'
         return
-
+    console.log 'error free'
     password = $f.find('input#passwordInput').val()
     username = $f.find('input#usernameInput').val()
     username = username?.replace? /^\s*|\s*$/g, ""
@@ -88,7 +115,9 @@ b3.accountEvents.signUp = (e,t) ->
     lastname = $f.find('input#lastNameInput').val()
     lastname = lastname?.replace? /^s\*|\s*$/g, ""
     profile = b3.accounts?.defaultProfile? || {}
-    _.extent profile, {firstname: firstname, lastname: lastname }
+    _.extend profile, {firstname: firstname, lastname: lastname }
+    console.log 'profile'
+
     Accounts.createUser({
         username: username
         email: email,
@@ -96,14 +125,15 @@ b3.accountEvents.signUp = (e,t) ->
         profile: profile
     }, (error)->
         if error?
+            console.log error.reason
             b3.flashError error.reason
         else
             b3.flashSuccess 'Welcome! Thanks for signing up.'
             if b3.accounts?.config?.confirmationEmail
                 b3.flashInfo "A confirmation e-mail should be delivered to #{email} shortly"
-            Router.go b3.accounts.config.dashboardRoute
+            Router.go b3.accounts.dashboard
     )
 
-b3.formEvent.signOut = ->
+b3.accountEvents.signOut = ->
     console.log 'signout event TODO'
 

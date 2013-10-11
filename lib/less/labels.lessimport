@@ -56,3 +56,11 @@
 .label-danger {
   .label-variant(@label-danger-bg);
 }
+
+.has-error > label.label {
+    .label-variant(@label-danger-bg);
+}
+
+.has-success > label.label {
+    .label-variant(@label-success-bg);
+}

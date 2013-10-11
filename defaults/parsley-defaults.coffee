@@ -31,6 +31,7 @@
                 pop = $(s)
                 $c= pop.find('.popover-content')
                 if $c.length is 0
+                    $('form-group').popover 'hide'
                     $(p).popover 'show'
                     $n = pop.find('.popover-content')
                     return $n

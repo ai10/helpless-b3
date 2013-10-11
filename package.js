@@ -3,8 +3,8 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'parsley', 'less', 'underscore', 'jquery', 'coffeescript']);
-
+    api.use(['standard-app-packages', 'parsley', 'less', 'underscore', 'jquery', 'coffeescript', 'iron-router']);
+    api.add_files(['accounts/accountMethods.coffee'],['client', 'server']);
     api.add_files([
     'lib/js/dropdown.js',
     'lib/js/tooltip.js',
@@ -22,9 +22,6 @@ Package.on_use(function (api) {
     'accounts/signUpPage.html',
     'accounts/signUpPage.coffee'
     ], ['client']);
-
-    api.add_files([
-    'methods-b3.coffee'], ['client', 'server']);
 
     if (typeof api.export !== 'undefined'){
         api.export([
