@@ -7,7 +7,6 @@ Alerts = new Meteor.Collection null
 Alert = (options)->
     if not (@ instanceof Alert) then return new Alert options
     flashouts = (aId, lert) ->
-        console.log 'flashout'
         if lert.timeout > 0
             tim1 = setTimeout( ->
                 Alerts.remove {_id: aId}
@@ -23,18 +22,18 @@ Alert = (options)->
         b3.timeouts[aId] = tim1
         b3.alarms[aId] = tim2
 
+
     a = _.defaults options,  @defaults
     a.timestamp = new Date().valueOf()
     if options.single?
-        id = Alerts.findOne {single: options.single}
+        oldA = Alerts.findOne {single: options.single}
+        id = oldA?._id
 
     if id?
         Alerts.update id, a
         if b3.timeouts[id]?
-            console.log 'cleartimeout'
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
-            console.log 'clearalarms'
             clearTimeout b3.alarms[id]
     else
         id = Alerts.insert a

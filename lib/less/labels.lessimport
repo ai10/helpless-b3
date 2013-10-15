@@ -64,3 +64,7 @@
 .has-success > label.label {
     .label-variant(@label-success-bg);
 }
+
+span.label.label-user:hover {
+    .label-variant(@label-warning-bg)
+}

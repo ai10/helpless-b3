@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'parsley', 'less', 'underscore', 'jquery', 'coffeescript', 'iron-router']);
+    api.use(['standard-app-packages', 'parsley', 'less', 'underscore', 'jquery', 'coffeescript']);
     api.add_files(['accounts/accountMethods.coffee'],['client', 'server']);
     api.add_files([
     'lib/js/dropdown.js',
@@ -18,9 +18,7 @@ Package.on_use(function (api) {
     'alerts/alert-b3.less',
     'accounts/accounts.coffee',
     'accounts/dynaSign.html',
-    'accounts/dynaSign.coffee',
-    'accounts/signUpPage.html',
-    'accounts/signUpPage.coffee'
+    'accounts/dynaSign.coffee'
     ], ['client']);
 
     if (typeof api.export !== 'undefined'){

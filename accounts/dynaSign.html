@@ -1,5 +1,8 @@
 <template name="dynaSign">
-<form id="dynaSign" class="navbar-form navbar-right">
+<form name='dynaSignForm' id="dynaSign" class="navbar-form navbar-right">
+    <div id='changeUser' class="form-group {{showChangeUser}}">
+        <button class="btn  btn-primary"><span class="badge badge-danger">&times</span>{{dynaEmailMaybe}}</button>
+    </div>
     <div data-title="Email sign in."
       data-original-title="Email sign in."
       data-content="Valid Email, e.g. name@mail.com ...."
@@ -7,26 +10,51 @@
       data-trigger='manual'
      data-placement="auto"
      id="emailInput"
-     class="form-group {{identityHidden}}"
+     data-type='email'
+     class="form-group {{showStep1}}"
      >
      <input class="form-control"
          type="text"
-         placeholder="email sign in ..."
+         placeholder="enter e-mail"
          id="emailInput"
          data-type='email'
          data-trigger="keyup focusout focusin"
          data-required='true'
          >
      </div>
-     <div data-title="Password"
+     <!--    end step 1 being step 2 -->
+     <div data-title="Confirm e-mail"
+      data-original-title="Confirm e-mail"
+      data-content="Matching email; {{dynaEmailMaybe}} ..."
+      data-id="emailiReEnter"
+      data-trigger='manual'
+     data-placement="auto"
+     id="emailReEnter"
+     data-type='email'
+     data-equalto='#emailInput'
+     class="form-group {{showStep2}}"
+     >
+     <input class="form-control"
+         type="text"
+         placeholder="Re-enter e-mail: {{dynaEmailPlaceholder}}"
+         id="emailReEnter"
+         data-type='email'
+         data-trigger="keyup focusout focusin"
+         data-required='true'
+         >
+     </div>
+     <!-- end step 2 begin step 3 --> 
+         <div data-title="Password"
           data-original-title="Password"
           data-id="passwordInput"
           data-placement="auto"
           data-trigger='manual'
-         id="passwordInput"
-         class="form-group {{passwordHidden}}"
-      >
+          id="passwordInput"
+          name="dynaPasswordGroup"
+         class="form-group {{showStep3}}"
+         >
          <input class="form-control navPassword"
+             name='dynaPasswordInput'
              type="password"
              placeholder="Password"
              id="passwordInput"
@@ -37,11 +65,14 @@
              data-minlength='6'
              >
          </div>
-         <div class="form-group {{signInHidden}}">
-         <input id='navbarSign' type="submit" value='Sign In.' class="navButton btn btn-success form-control">
-        </div>
-        <div class='form-group {{signUpHidden}}'>
-             <button type="button" id="signUp" class="btn btn-info form-control">Sign Up.</button>
+        <div class='form-group {{showNew}}'>
+             <button type="button" id="signUpNew" class="btn btn-info form-control">Sign Up.</button>
+         </div>
+         <div class='form-group {{showComplete}}'>
+             <button type="button" id="signUpComplete" class="btn btn-info for-control">Submit Password</button>
+         </div>
+         <div class='form-group {{showSignIn}}'>
+             <button type="button" id="signIn" class="btn btn-success for-control">Sign In.</button>
          </div>
  </form>
 </template>

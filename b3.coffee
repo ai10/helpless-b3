@@ -1,3 +1,3 @@
 @b3 = {}
 @b3.eventHandlers = {}
-console.log b3
+console.log @b3
