@@ -88,6 +88,7 @@ alertsCurries = {
         flashError: Alert::curry { header: 'error', type: 'danger', timeout: 4200, hover: true }
         flashSuccess: Alert::curry { header: 'success', type: 'success', timeout: 4200, hover: true }
         flashInfo: Alert::curry { header: 'info', type: 'info', timeout: 4200, hover: true }
+        flashWarn: Alert::curry { header: 'Warning:', type: 'warning', timeout: 4200 }
 }
 
 _.each alertsCurries, (v, k) ->

@@ -1,5 +1,4 @@
 Template.dynaSign.created = ->
-    console.log 'dynaSign created'
     Session.set 'dynaStep', 1
     Session.set 'dynaUserExisting', false
     Session.set 'dynaUserAuthenticated', false
@@ -50,15 +49,31 @@ Template.dynaSign.helpers
         "hidden"
 
 Template.dynaSign.events
-    'keyup input#emailInput': b3.accountEvents.inputEmail
-    'keyup input#emailReEnter': b3.accountEvents.emailReEnter
-    'keyup input#passwordInput': b3.accountEvents.inputPassword
+    'change, keyup input#emailInput': b3.accountEvents.inputEmail
+    'change, keyup input#emailReEnter': b3.accountEvents.emailReEnter
+    'change, keyup input#passwordInput': b3.accountEvents.inputPassword
+    'keydown input': (e, t) ->
+        if e.keyCode is 13
+            e.preventDefault()
+            return
     'click button#signUpNew': b3.accountEvents.signUpNew
-    'click button#signUpComplete': b3.accountEvents.signUpComplete
-    'click button#signIn': b3.accountEvents.signIn
+    'click button#signUpComplete': b3.accountEvents.signPass
+    'click button#signIn': b3.accountEvents.signPass
     'click div#changeUser': ->
+        if Meteor.userId()
+            Meteor.logout()
         Session.set 'dynaEmailMaybe', ""
         Session.set 'dynaEmailValid', false
         Session.set 'dynaUserExisting', false
         Session.set 'dynaStep', 1
+    'click button#forgotPass': ->
+        console.log 'forgot pass'
+        if Session.equals('dynaUserExisting', true)
+            email = Session.get 'dynaEmailMaybe'
+            console.log 'forgot password for:', email
+            Accounts.forgotPassword { email: email }, (error)->
+                if error?
+                    console.log 'error:', error
+                else
+                    console.log 'forgotpassword email success'
 

@@ -1,7 +1,7 @@
 <template name="dynaSign">
 <form name='dynaSignForm' id="dynaSign" class="navbar-form navbar-right">
-    <div id='changeUser' class="form-group {{showChangeUser}}">
-        <button class="btn  btn-primary"><span class="badge badge-danger">&times</span>{{dynaEmailMaybe}}</button>
+    <div id='changeUser' class="form-group {{ showChangeUser }}">
+        <button class="btn btn-primary"><span class="text-left text-danger glyphicon glyphicon-remove-circle">&nbsp</span>{{ dynaEmailMaybe }}</button>
     </div>
     <div data-title="Email sign in."
       data-original-title="Email sign in."
@@ -11,7 +11,7 @@
      data-placement="auto"
      id="emailInput"
      data-type='email'
-     class="form-group {{showStep1}}"
+     class="form-group {{ showStep1 }}"
      >
      <input class="form-control"
          type="text"
@@ -25,18 +25,18 @@
      <!--    end step 1 being step 2 -->
      <div data-title="Confirm e-mail"
       data-original-title="Confirm e-mail"
-      data-content="Matching email; {{dynaEmailMaybe}} ..."
+      data-content="Matching email; {{ dynaEmailMaybe }} ..."
       data-id="emailiReEnter"
       data-trigger='manual'
      data-placement="auto"
      id="emailReEnter"
      data-type='email'
      data-equalto='#emailInput'
-     class="form-group {{showStep2}}"
+     class="form-group {{ showStep2 }}"
      >
      <input class="form-control"
          type="text"
-         placeholder="Re-enter e-mail: {{dynaEmailPlaceholder}}"
+         placeholder="Re-enter e-mail: {{ dynaEmailMaybe }}"
          id="emailReEnter"
          data-type='email'
          data-trigger="keyup focusout focusin"
@@ -51,7 +51,7 @@
           data-trigger='manual'
           id="passwordInput"
           name="dynaPasswordGroup"
-         class="form-group {{showStep3}}"
+         class="form-group {{ showStep3 }}"
          >
          <input class="form-control navPassword"
              name='dynaPasswordInput'
@@ -65,14 +65,17 @@
              data-minlength='6'
              >
          </div>
-        <div class='form-group {{showNew}}'>
+        <div class='form-group {{ showNew }}'>
              <button type="button" id="signUpNew" class="btn btn-info form-control">Sign Up.</button>
          </div>
-         <div class='form-group {{showComplete}}'>
-             <button type="button" id="signUpComplete" class="btn btn-info for-control">Submit Password</button>
+         <div class='form-group {{ showComplete }}'>
+             <button type="button" id="signUpComplete" class="btn btn-info form-control">Submit Password</button>
          </div>
-         <div class='form-group {{showSignIn}}'>
-             <button type="button" id="signIn" class="btn btn-success for-control">Sign In.</button>
+         <div class='form-group {{ showSignIn }}'>
+             <button type="button" id="signIn" class="btn btn-success form-control">Sign In.</button>
+         </div>
+         <div class='form-group {{ showSignIn }}'>
+             <button type="button" id="forgotPass" class="btn btn-default form-control">Forgot Password?</button>
          </div>
  </form>
 </template>
