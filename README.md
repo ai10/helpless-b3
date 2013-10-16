@@ -1,4 +1,4 @@
-b3
+b3-helpless
 ==
 
 bootstrap 3 less files with meteor style javascript.
@@ -6,6 +6,26 @@ bootstrap 3 less files with meteor style javascript.
 ##API
 
 b3 is the exported handle.
+
+###dynaSign
+
+An inline navbar widget for dynamically interacting with user.
+
+add keys.coffee file with a  mailgun.com public-api-key for e-mail validation.
+
+```coffeescript
+@b3.validate_api_key = '<mailgun.com public-api-key>'
+```
+Insert into your navbar.
+
+```handlebars
+
+<ul class="nav navbar-nav navbar-right">
+  {{> dynaSign}}
+</ul>
+
+```
+
 
 ###Alerts
   

@@ -24,8 +24,6 @@ Package.on_use(function (api) {
     'alerts/alert-b3.html', 
     'alerts/alert-b3.coffee', 
     'alerts/alert-b3.less',
-    'accounts/mailgunValidate.coffee',
-    'accounts/accounts.coffee',
     'accounts/dynaSign.html',
     'accounts/dynaSign.coffee'
     ], ['client']);
