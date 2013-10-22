@@ -7,6 +7,8 @@ b3.accounts = {
 }
 b3.accountEvents = {}
 b3.logInTimeout = 0
+
+
 b3.accountEvents.logIn = (email, password) ->
     if Meteor.userId()
         return
@@ -23,6 +25,7 @@ b3.accountEvents._logIn =  ->
     password = b3.accountEvents.loginPassword
     Meteor.loginWithPassword email, password, (error)=>
         if error?
+            Session.set 'dynaTooltipText', error.reason
             b3.flashError error.reason, {
                 header: 'Login Error:'
                 single: 'dynaPass'
@@ -37,8 +40,9 @@ b3.accountEvents._logIn =  ->
 
 b3.accountEvents.inputPassword = (e, t)->
     e.preventDefault()
+    if (e.target.id isnt 'passwordInput') then return
     f = t.firstNode || e.target.f
-    valid = $(f).find('input#passwordInput').parsley('validate')
+    valid = $(f).find("input#passwordInput").parsley('validate')
     if valid
         if Session.equals('dynaUserExisting', true)
             email = Session.get 'dynaEmailMaybe'
@@ -50,8 +54,10 @@ b3.accountEvents.inputPassword = (e, t)->
 
 b3.accountEvents.inputEmail = ( e, t ) ->
     e.preventDefault()
+    if (e.target.id isnt 'emailInput') then return
     address = e.target.value
     keyCode = e.keyCode
+    console.log 'inputEmail', address
     f = t.firstNode || e.target.f
     valid = $(f).find('input#emailInput').parsley('validate')
     if valid
@@ -65,6 +71,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
             dataType: "jsonp"
             crossDomain: true
             success: (data, status) ->
+                console.log 'ajax mailgun success'
                 if not data.is_valid
                     Session.set('dynaEmailValid', false)
                     if data.did_you_mean?
@@ -72,6 +79,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
                     if not data.did_you_mean?
                         Session.set('dynaEmailMaybe', "")
                         data.did_you_mean = 'something else..?'
+                    Session.set 'dynaTooltipText', "#{address} invalid, did you mean #{data.did_you_mean}"
                     b3.flashWarn data.did_you_mean, {
                         header: "#{address} invalid, did you mean:"
                         single: 'dynaUser'
@@ -88,7 +96,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
                                     return b3.accountEvents.signUpNew( e, t )
                                 b3.flashInfo address, {
                                     single: 'dynaUser'
-                                    header: 'Sign up!'
+                                    header: 'New email, sign up!'
                                 }
                                 return false
                             else
@@ -177,17 +185,19 @@ b3.accountEvents.signUpNew = ( e, t ) ->
 b3.accountEvents.signOut = ->
     console.log 'signout event TODO'
 
-Template.dynaSign.created = ->
+Template.dynaSign.created = ()->
     Session.set 'dynaStep', 1
     Session.set 'dynaUserExisting', false
     Session.set 'dynaUserAuthenticated', false
     Session.set 'dynaEmailMaybe', ""
     Session.set 'dynaEmailValid', false
+    Session.set 'dynaTooltipText', 'e-mail sign in.'
 
 Template.dynaSign.destroyed = ->
     'dynaSign destroyed'
 
 Template.dynaSign.rendered = ->
+    console.log 'dsrendered', @
     f = @firstNode
     $(f)?.parsley('destroy')?.parsley b3.parsley
 
@@ -197,6 +207,9 @@ Template.dynaSign.helpers
             return Session.get('dynaEmailMaybe')
         else
             return ""
+    tooltipText: ->
+        Session.get('dynaTooltipText')
+
     signedInAs: ->
         Meteor.user().username ?
         (Meteor.user().profile?.name ?

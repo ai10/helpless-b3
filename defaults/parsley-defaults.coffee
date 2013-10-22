@@ -15,7 +15,7 @@
                 if not /[a-z]/i.test(val)
                     return false
                 true
-        showErrors: true
+        showErrors: false
         messages:
             hasnumber: "Needs a number."
             hasletter: "Needs a letter."
@@ -27,13 +27,13 @@
 
             container: (e, r) ->
                 p = e.parent()
-                s = "div##{e.context.id}.popover"
+                s = "div##{e.context.id}.tooltip"
                 pop = $(s)
-                $c= pop.find('.popover-content')
+                $c= pop.find('.tooltip-title')
                 if $c.length is 0
-                    $('form-group').popover 'hide'
-                    $(p).popover 'show'
-                    $n = pop.find('.popover-content')
+                    $('form-group').tooltip 'hide'
+                    $(p).tooltip 'show'
+                    $n = pop.find('.tooltip-title')
                     return $n
                 return $c
             errorsWrapper: '<ul></ul>'
@@ -43,5 +43,5 @@
             onFormSubmut: ->
             onFieldError: ->
             onFieldSuccess: (elem) ->
-                elem.parent().popover 'hide'
+
 }

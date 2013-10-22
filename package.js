@@ -24,6 +24,8 @@ Package.on_use(function (api) {
     'alerts/alert-b3.html', 
     'alerts/alert-b3.coffee', 
     'alerts/alert-b3.less',
+    'tooltips/tooltip-b3.html',
+    'tooltips/tooltip-b3.coffee',
     'accounts/dynaSign.html',
     'accounts/dynaSign.coffee'
     ], ['client']);
