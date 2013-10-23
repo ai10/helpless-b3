@@ -3,10 +3,13 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'http', 'parsleyb3', 'less', 'underscore', 'jquery', 'coffeescript']);
+    api.use(['standard-app-packages', 'accounts-base', 'accounts-password', 'http', 'parsleyb3', 'less', 'underscore', 'jquery', 'coffeescript'], 'client');
+    api.use('iron-router', ['client', 'server']);
+    api.imply(['accounts-base', 'accounts-password'],['client', 'server']);
+
     var path = Npm.require('path');
     var asset_path = path.join('lib');
-    api.add_files(['accounts/accountMethods.coffee'],['client', 'server']);
+    api.add_files(['accounts/accountsB3.coffee'],['client', 'server']);
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.eot'), 'client');
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.ttf'), 'client');
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.svg'), 'client');
@@ -20,7 +23,7 @@ Package.on_use(function (api) {
     'lib/js/transition.js',
     'b3.coffee',
     'b3.less',
-    'keys.coffee',
+    'config-b3.coffee',
     'defaults/parsley-defaults.coffee',
     'alerts/alert-b3.html', 
     'alerts/alert-b3.coffee', 
