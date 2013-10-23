@@ -15,10 +15,10 @@
                 if not /[a-z]/i.test(val)
                     return false
                 true
-        showErrors: false
+        showErrors: true
         messages:
-            hasnumber: "Needs a number."
-            hasletter: "Needs a letter."
+            hasnumber: ""
+            hasletter: ""
 
         validateIfUnchanged: true
         errors:

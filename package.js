@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'http', 'parsley', 'less', 'underscore', 'jquery', 'coffeescript']);
+    api.use(['standard-app-packages', 'http', 'parsleyb3', 'less', 'underscore', 'jquery', 'coffeescript']);
     var path = Npm.require('path');
     var asset_path = path.join('lib');
     api.add_files(['accounts/accountMethods.coffee'],['client', 'server']);
@@ -15,6 +15,7 @@ Package.on_use(function (api) {
 
     api.add_files([
     'lib/js/tooltip.js',
+    'lib/js/dropdown.js',
     'lib/js/popover.js',
     'lib/js/transition.js',
     'b3.coffee',
