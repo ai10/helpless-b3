@@ -68,6 +68,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
     keyCode = e.keyCode
     f = t.firstNode || e.target.f
     valid = $(f).find('input#emailInput').parsley('validate')
+    console.log 'inputEmail', valid, address, keyCode
     if valid
         if not address then return
         if address.length > 512
@@ -79,6 +80,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
             dataType: "jsonp"
             crossDomain: true
             success: (data, status) ->
+                console.log 'ajax success', data, status
                 if not data.is_valid
                     Session.set('dynaEmailValid', false)
                     if data.did_you_mean?
@@ -97,6 +99,7 @@ b3.accountEvents.inputEmail = ( e, t ) ->
                     if Session.equals('dynaStep', 1)
                         Session.set 'dynaEmailMaybe', address
                         Meteor.call 'checkIdentity', address, (err, result)->
+                            console.log 'check identity', err, result
                             if result is false
                                 Session.set 'dynaUserExisting', false
                                 if keyCode is 13
@@ -166,6 +169,7 @@ b3.accountEvents.signPass = ( e , t )->
         return b3.accountEvents.logIn(email, password)
 
     profile = b3.accounts?.defaultProfile? || {}
+    console.log 'accounts create user', email, password
     Accounts.createUser({
         email: email,
         password: password,
@@ -176,7 +180,7 @@ b3.accountEvents.signPass = ( e , t )->
         else
             b3.flashSuccess 'Welcome! Thanks for signing up.'
             if b3.accounts?.config?.confirmationEmail
-                b3.flashInfo "A confirmation e-mail should be delivered to #{email} shortly"
+                b3.flashInfo "A verification e-mail should be delivered to #{email} shortly"
             Session.set('dynaStep', 0)
     )
     false

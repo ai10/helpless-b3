@@ -3,18 +3,18 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'accounts-base', 'accounts-password', 'http', 'parsleyb3', 'less', 'underscore', 'jquery', 'coffeescript'], 'client');
-    api.use('iron-router', ['client', 'server']);
+    api.use(['standard-app-packages', 'http', 'parsleyb3', 'less', 'underscore', 'jquery', 'coffeescript'], 'client');
+    api.use(['accounts-base', 'accounts-password', 'iron-router'], ['client', 'server']);
     api.imply(['accounts-base', 'accounts-password'],['client', 'server']);
 
     var path = Npm.require('path');
     var asset_path = path.join('lib');
-    api.add_files(['accounts/accountsB3.coffee'],['client', 'server']);
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.eot'), 'client');
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.ttf'), 'client');
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.svg'), 'client');
     
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.woff'), 'client');
+    api.add_files('accounts/accountsB3.coffee',['server']);
 
     api.add_files([
     'lib/js/tooltip.js',
@@ -30,11 +30,12 @@ Package.on_use(function (api) {
     'alerts/alert-b3.less',
     'tooltips/tooltip-b3.html',
     'tooltips/tooltip-b3.coffee',
+    'accounts/accountsB3.coffee',
     'accounts/dynaSign.html',
     'accounts/dynaSign.coffee'
     ], ['client']);
-
-    if (typeof api.export !== 'undefined'){
+    
+      if (typeof api.export !== 'undefined'){
         api.export([
         'b3'
         ], 'client');
