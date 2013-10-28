@@ -13,12 +13,13 @@ Package.on_use(function (api) {
     
     api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.woff'), 'client');
 
+    api.add_files('b3.coffee', ['client', 'server']);
+
     api.add_files([
     'lib/js/tooltip.js',
     'lib/js/dropdown.js',
     'lib/js/popover.js',
     'lib/js/transition.js',
-    'b3.coffee',
     'b3.less',
     'alerts/alert-b3.html', 
     'alerts/alert-b3.coffee', 
@@ -27,11 +28,9 @@ Package.on_use(function (api) {
     'tooltips/tooltip-b3.coffee',
     ], ['client']);
     
-    if (typeof api.export !== 'undefined'){
-        api.export([
+    api.export(
         'b3'
-        ], 'client');
-    }
+        , ['client', 'server']);
 
 });
 
