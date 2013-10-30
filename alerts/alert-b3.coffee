@@ -84,11 +84,11 @@ alertsCurries = {
         alertConfirmation: Alert::curry { dialog: true, confirmation: true, block: 'alert-block'}
         alertPrimary: Alert::curry { header: "primary" }
         alertConfirmPassword: Alert::curry { dialog: true, type: 'info', block: 'alert-block', inputType: 'password', header: 'Confirm Password', icon: "glyphicon glyphicon-certificate" }
-        alertConfirmEmail: Alert::curry { dialog: true, type: 'info', block: 'alert-block', inputType: 'text', header: 'Confirm Email', icon: 'glyphicon glyphicon-certificate' }
-        flashError: Alert::curry { header: 'error', type: 'danger', timeout: 4200, hover: true }
-        flashSuccess: Alert::curry { header: 'success', type: 'success', timeout: 4200, hover: true }
-        flashInfo: Alert::curry { header: 'info', type: 'info', timeout: 4200, hover: true }
-        flashWarn: Alert::curry { header: 'Warning:', type: 'warning', timeout: 4200 }
+        alertConfirmEmail: Alert::curry { dialog: true, type: 'info', block: 'alert-block', promptInput: 'text', header: 'Confirm Email', icon: 'glyphicon glyphicon-certificate' }
+        flashError: Alert::curry { header: 'error', type: 'danger', timeout: 4200 }
+        flashSuccess: Alert::curry { header: 'success', type: 'success', timeout: 4200 }
+        flashInfo: Alert::curry { header: 'info', type: 'info', timeout: 4200 }
+        flashWarn: Alert::curry { header: 'Warning:', type: 'warning' }
 }
 
 _.each alertsCurries, (v, k) ->

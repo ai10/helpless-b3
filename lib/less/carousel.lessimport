@@ -139,8 +139,8 @@
   left: 50%;
   z-index: 15;
   width: 60%;
-  margin-left: -30%;
   padding-left: 0;
+  margin-left: -30%;
   list-style: none;
   text-align: center;
 
