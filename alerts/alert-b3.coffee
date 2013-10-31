@@ -21,6 +21,7 @@ Alert = (options)->
             )
         b3.timeouts[aId] = tim1
         b3.alarms[aId] = tim2
+        true
 
 
     a = _.defaults options,  @defaults
@@ -39,6 +40,7 @@ Alert = (options)->
         id = Alerts.insert a
 
     flashouts id, a
+    @id = id
 
 Alert::defaults = {
             type: 'default'
@@ -53,15 +55,22 @@ Alert::defaults = {
             block: ""
             soundoff: ""
             buttonClass: "btn btn-info"
+            selectClass: "selectClass"
             buttonLink: "#"
             buttonText: "Confirm"
+            showAltButton: false
+            altSelectClass: "altSelectClass"
             altButtonClass: "btn btn-default"
             altButtonLink: "#"
             altButtonText: "Cancel"
+            altButtonIcon: 'glyphicon glyphicon-remove-sign'
             inputType: "text"
             hover: false
             alarm: false
             ringing: false
+            placeholder: ""
+            value: ""
+            label: "label"
     }
 
 Alert::curry = (extension)->
@@ -74,6 +83,10 @@ Alert::curry = (extension)->
 Alert::setDefaults = (defaults) ->
     _.extend Alert::defaults, defaults
 
+
+Alert::remove = (id)->
+    Alerts.remove {_id: id }
+
 alertsCurries = {
         alertDanger: Alert::curry { header: "danger", type: 'danger'}
         alertSuccess: Alert::curry { header: "success", type: 'success'}
@@ -83,8 +96,6 @@ alertsCurries = {
         alertDialog: Alert::curry { dialog: true, block: 'alert-block'}
         alertConfirmation: Alert::curry { dialog: true, confirmation: true, block: 'alert-block'}
         alertPrimary: Alert::curry { header: "primary" }
-        alertConfirmPassword: Alert::curry { dialog: true, type: 'info', block: 'alert-block', inputType: 'password', header: 'Confirm Password', icon: "glyphicon glyphicon-certificate" }
-        alertConfirmEmail: Alert::curry { dialog: true, type: 'info', block: 'alert-block', promptInput: 'text', header: 'Confirm Email', icon: 'glyphicon glyphicon-certificate' }
         flashError: Alert::curry { header: 'error', type: 'danger', timeout: 4200 }
         flashSuccess: Alert::curry { header: 'success', type: 'success', timeout: 4200 }
         flashInfo: Alert::curry { header: 'info', type: 'info', timeout: 4200 }
@@ -93,6 +104,8 @@ alertsCurries = {
 
 _.each alertsCurries, (v, k) ->
     b3[k] = v
+
+b3.Alert = Alert
 
 Template.b3AlertList.helpers
     alerts: ->
@@ -125,24 +138,18 @@ Template.b3AlertsContainer.helpers
 Template.b3Alert.events
     'click button.close': (e, t) ->
         e.preventDefault()
-        Alerts.remove({_id: @_id})
+        Alert::remove(@_id)
     'mouseover div.alert': (e, t) ->
         e.preventDefault()
         if @hover is true
-            Alerts.remove { _id: @_id }
-    'submit': (e, t) ->
-        e.preventDefault()
-        console.log "submit", e.target[0].value
-    'input': (e, t) ->
-        e.preventDefault()
-        console.log 'validity', e.target.validity.valid, @
+            Alert::remove(@_id)
 
 Template.b3Alert.helpers
     glyphicon: ->
         if @icon is false
             switch @type
                 when 'info'
-                    return "glyphicon glyphicon-tag"
+                    return "glyphicon glyphicon-info-sign"
                 when 'danger'
                     return "glyphicon glyphicon-ban-circle"
                 when 'warning'
