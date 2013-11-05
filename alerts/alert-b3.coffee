@@ -57,12 +57,13 @@ Alert::defaults = {
             buttonClass: "btn btn-info"
             selectClass: "selectClass"
             buttonLink: "#"
-            buttonText: "Confirm"
+            buttonText: " Confirm"
+            buttonIcon: "glyphicon glyphicon-send"
             showAltButton: false
             altSelectClass: "altSelectClass"
             altButtonClass: "btn btn-default"
             altButtonLink: "#"
-            altButtonText: "Cancel"
+            altButtonText: " Cancel"
             altButtonIcon: 'glyphicon glyphicon-remove-sign'
             inputType: "text"
             hover: false

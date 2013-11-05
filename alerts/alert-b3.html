@@ -19,11 +19,11 @@
                 </div><!-- /.form-group -->
              {{/if}}
              {{#if confirmation}}
-               <button type="button" class="{{ selectClass }} btn btn-primary">
-                 <span class="glyphicon glyphicon-send">{{ buttonText }} </span>
+               <button type="button" class="{{ selectClass }} btn btn-block btn-primary">
+                   <span class="{{ buttonIcon }} ">{{ buttonText }} </span>
                </button>
                {{#if showAltButton }}
-                 <button type="button" class="{{ altSelectClass }} btn {{ allButtonClass}} ">
+                 <button type="button" class="{{ altSelectClass }} btn btn-block {{ allButtonClass}} ">
                  <span class="{{ altButtonIcon }}">{{ altButtonText }}</span>
                  </button>
                {{/if}}
