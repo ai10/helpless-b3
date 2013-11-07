@@ -1,10 +1,12 @@
 <template name="b3Alert">
-<div class="b3 alert alert-{{type}} {{block}} {{ selectClass }} {{soundoff}} fade in">
-    <span class="{{ glyphicon }}"></span>
-    {{#unless hover}}
-    <button id="{{_id}}" type="button" class="close" aria-hidden="true">x</button>
-    {{/unless}}
-    <span class="label label-{{type}}">{{header}}</span> <span class="text-center">{{text}}</span>
+  <div class="b3 alert alert-{{type}} {{block}} {{ selectClass }} {{soundoff}} fade in">
+   <span class="{{ glyphicon }}"></span>
+        {{#unless hover}}
+        <button class="close">
+            <span class="close glyphicon glyphicon-remove"></span>
+        </button>
+        {{/unless}}
+        <span class="label label-{{type}}">{{header}}</span> <span class="text-center">{{text}}</span>
     <form role="form">
              {{#if dialog }}
                 <div class="form-group">
@@ -30,6 +32,7 @@
                {{/if}}
              {{/if}}
          </form>
+
   </div>
 </template>
 

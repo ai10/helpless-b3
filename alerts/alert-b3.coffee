@@ -1,7 +1,7 @@
 b3 = @b3
 b3.timeouts = {}
 b3.alarms = {}
-
+b3.hoverAfters = {}
 Alerts = new Meteor.Collection null
 
 Alert = (options)->
@@ -19,8 +19,16 @@ Alert = (options)->
             ,
                 lert.alarm
             )
+        if lert.hoverAfter > 0
+            tim3 = setTimeoue(->
+                Alerts.update {_id: aId}, {$set: {hoverDismiss: true}}
+            ,
+                lert.hoverAfter
+            )
+
         b3.timeouts[aId] = tim1
         b3.alarms[aId] = tim2
+        b3.hoverAfters[aId] = tim3
         true
 
 
@@ -36,6 +44,8 @@ Alert = (options)->
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
             clearTimeout b3.alarms[id]
+        if b3.hoverDelays[id]?
+            clearTimeout b3.hoverDelays[id]
     else
         id = Alerts.insert a
 
@@ -66,7 +76,8 @@ Alert::defaults = {
             altButtonText: " Cancel"
             altButtonIcon: 'glyphicon glyphicon-remove-sign'
             inputType: "text"
-            hover: false
+            hoverDismiss: false
+            hoverAfter: -1
             alarm: false
             ringing: false
             placeholder: ""
@@ -74,6 +85,7 @@ Alert::defaults = {
             label: "label"
             validation: ""
     }
+
 
 Alert::curry = (extension)->
     return (text, options = {}) ->
@@ -83,7 +95,9 @@ Alert::curry = (extension)->
         return new Alert a
 
 Alert::setDefaults = (defaults) ->
-    _.extend Alert::defaults, defaults
+    oldDefaults = @defaults
+    _.extend oldDefaults, defaults
+    @defaults = oldDefaults
 
 
 Alert::remove = (id)->
@@ -112,6 +126,7 @@ alertsCurries = {
 
 _.each alertsCurries, (v, k) ->
     b3[k] = v
+
 
 b3.Alert = Alert
 
