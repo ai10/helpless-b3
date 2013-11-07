@@ -72,6 +72,7 @@ Alert::defaults = {
             placeholder: ""
             value: ""
             label: "label"
+            validation: ""
     }
 
 Alert::curry = (extension)->
@@ -86,7 +87,13 @@ Alert::setDefaults = (defaults) ->
 
 
 Alert::remove = (id)->
-    Alerts.remove {_id: id }
+    if typeof id is 'string'
+        Alerts.remove {_id: id }
+    if typeof id is 'object'
+        Alerts.remove id
+
+Alert::clearAll = ->
+    Alerts.remove({})
 
 alertsCurries = {
         alertDanger: Alert::curry { header: "danger", type: 'danger'}
@@ -135,6 +142,16 @@ Template.b3AlertsContainer.helpers
         regmap =_.map regs, (r)->
             {region: r}
 
+Template.b3Alert.rendered = ->
+    if @data.dialog
+        if @data.value.length > 1 then return
+        first = @firstNode
+        setTimeout =>
+            $f = $(first).find('input')
+            $f?.parsley('destroy')?.parsley b3.parsley
+            $f?.focus()
+        ,
+            100
 
 Template.b3Alert.events
     'click button.close': (e, t) ->
