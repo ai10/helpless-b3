@@ -4,6 +4,7 @@ b3.alarms = {}
 b3.hoverAfters = {}
 Alerts = new Meteor.Collection null
 
+
 Alert = (options)->
     if not (@ instanceof Alert) then return new Alert options
     flashouts = (aId, lert) ->
