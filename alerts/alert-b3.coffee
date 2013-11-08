@@ -21,7 +21,7 @@ Alert = (options)->
                 lert.alarm
             )
         if lert.hoverAfter > 0
-            tim3 = setTimeoue(->
+            tim3 = setTimeout(->
                 Alerts.update {_id: aId}, {$set: {hoverDismiss: true}}
             ,
                 lert.hoverAfter
@@ -45,8 +45,8 @@ Alert = (options)->
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
             clearTimeout b3.alarms[id]
-        if b3.hoverDelays[id]?
-            clearTimeout b3.hoverDelays[id]
+        if b3.hoverAfters[id]?
+            clearTimeout b3.hoverAfters[id]
     else
         id = Alerts.insert a
 
@@ -111,18 +111,59 @@ Alert::clearAll = ->
     Alerts.remove({})
 
 alertsCurries = {
-        alertDanger: Alert::curry { header: "danger", type: 'danger'}
-        alertSuccess: Alert::curry { header: "success", type: 'success'}
-        alertInfo: Alert::curry { header: "info", type: 'info'}
-        alertWarning: Alert::curry { header: "warning", type: 'warning'}
+        alertDanger: Alert::curry {
+            header: "danger"
+            type: 'danger'
+        }
+        alertSuccess: Alert::curry {
+            header: "success"
+            type: 'success'
+        }
+        alertInfo: Alert::curry {
+            header: "info"
+            type: 'info'
+        }
+        alertWarning: Alert::curry {
+            header: "warning"
+            type: 'warning'
+        }
         alertSetDefaults: Alert::setDefaults
-        alertDialog: Alert::curry { dialog: true, block: 'alert-block'}
-        alertConfirmation: Alert::curry { dialog: true, confirmation: true, block: 'alert-block'}
-        alertPrimary: Alert::curry { header: "primary" }
-        flashError: Alert::curry { header: 'error', type: 'danger', timeout: 4200 }
-        flashSuccess: Alert::curry { header: 'success', type: 'success', timeout: 4200 }
-        flashInfo: Alert::curry { header: 'info', type: 'info', timeout: 4200 }
-        flashWarn: Alert::curry { header: 'Warning:', type: 'warning' }
+        alertDialog: Alert::curry {
+            dialog: true
+            block: 'alert-block'
+        }
+        alertConfirmation: Alert::curry {
+            dialog: true
+            confirmation: true
+            block: 'alert-block'
+        }
+        alertPrimary: Alert::curry {
+            header: "primary"
+        }
+        flashError: Alert::curry {
+            header: 'error'
+            type: 'danger'
+            timeout: 4200  #auto dismiss after
+            hoverAfter: 2800 #hover will execute dismiss after
+        }
+        flashSuccess: Alert::curry {
+            header: 'success'
+            type: 'success'
+            timeout: 4200
+            hoverAfter: 2800
+        }
+        flashInfo: Alert::curry {
+            header: 'info'
+            type: 'info'
+            timeout: 4200
+            hoverAfter: 2800
+        }
+        flashWarn: Alert::curry {
+            header: 'Warning:'
+            type: 'warning'
+            timeout: 4200
+            hoverAfter: 2800
+        }
 }
 
 _.each alertsCurries, (v, k) ->
@@ -175,7 +216,7 @@ Template.b3Alert.events
         Alert::remove(@_id)
     'mouseover div.alert': (e, t) ->
         e.preventDefault()
-        if @hover is true
+        if @hoverDismiss is true
             Alert::remove(@_id)
 
 Template.b3Alert.helpers
