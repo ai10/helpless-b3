@@ -20,6 +20,7 @@ Package.on_use(function (api) {
     'lib/js/dropdown.js',
     'lib/js/popover.js',
     'lib/js/transition.js',
+    'lib/js/modal.js',
     'b3.less',
     'alerts/alert-b3.html', 
     'alerts/alert-b3.coffee', 
