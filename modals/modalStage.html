@@ -1,0 +1,24 @@
+<template name="modalStage">
+{{#if showModal}}
+<div class="modal-backdrop fade id"></div>
+{{/if}}
+<ul class="modalStage list-group">
+  {{#each modals }}
+   {{#if isTemplate 'standard' }}
+     {{> standardModal }}
+   {{/if}}
+   {{#if isTemplate 'video' }}
+     {{> videoModal }}
+   {{/if}}
+   {{#if isTemplate 'canvas' }}
+     {{> canvasModal }}
+   {{/if}}
+   {{#if isTemplate 'answer' }}
+     {{> answerModal }}
+   {{/if}}
+   {{#if isTemplate 'choice' }}
+     {{> choiceModal }}
+   {{/if}}
+   {{/each}}
+</ul>
+</template>

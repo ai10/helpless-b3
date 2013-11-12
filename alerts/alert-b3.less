@@ -1,6 +1,6 @@
 ul.b3AlertList {
-    position: fixed;
-    z-index: 99;
+    position: absolute;
+    z-index: 2040;
 }
 
 ul.b3AlertList.topAlert {
@@ -13,7 +13,7 @@ ul.b3AlertList.bottomAlert {
 
 ul.b3AlertList.rightAlert {
     right: 7px;
-    z-index: 101;
+    z-index: 2060;
 }
 
 ul.b3AlertList.leftAlert {
@@ -38,4 +38,9 @@ ul.centerAlert > div.alert {
 }
 span.close {
 
+}
+
+div.alert.uberModal {
+    margin-top: -45%;
+    z-index: 2040 !important;
 }

@@ -164,6 +164,12 @@ alertsCurries = {
             timeout: 4200
             hoverAfter: 2800
         }
+        modalTime: Alert::curry {
+            header: 'Time remaining:'
+            type: 'warning'
+            selectClass: 'uberModal'
+            timeout: 18000
+        }
 }
 
 _.each alertsCurries, (v, k) ->
