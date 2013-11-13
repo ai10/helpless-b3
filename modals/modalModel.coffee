@@ -93,7 +93,7 @@ Modal::curry = (extension)->
         a = _.extend a, options
         return new Modal a
 
-Modal::video = (title, videoInfo) ->
+Modal::video = (parent, videoInfo) ->
     videoInfo = videoInfo or {}
     videoDefaults = {
         id: 'modalVideo'
@@ -103,23 +103,23 @@ Modal::video = (title, videoInfo) ->
     }
 
     _.defaults videoInfo, videoDefaults
-    console.log 'videoInfo', videoInfo
     return new Modal {
-        header: title
+        breadcrumb: parent?.id or 0
+        header: parent?.title or 'Modal'
         template: 'video'
         video: videoInfo
     }
 
-Modal::interactive = (title, manifest) ->
+Modal::interactive = (parent, manifest) ->
     info = info or {}
     defaults = {
         src: '/images/PLAX.jpg'
         id: 'PLAX'
     }
     _.defaults manifest, defaults
-    console.log 'interactiveInfo', manifest
     return new Modal {
-        header: title
+        breadcrumb: parent?.id or 0
+        header: parent?.title or 0
         template: 'interactive'
         manifest: manifest
     }
