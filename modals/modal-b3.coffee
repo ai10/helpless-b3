@@ -17,5 +17,3 @@ Template.choiceModal.rendered = ->
 
 Template.answerModal.rendered = ->
     console.log 'aswerModal rendered', @
-
-

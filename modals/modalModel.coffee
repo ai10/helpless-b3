@@ -110,6 +110,20 @@ Modal::video = (title, videoInfo) ->
         video: videoInfo
     }
 
+Modal::interactive = (title, manifest) ->
+    info = info or {}
+    defaults = {
+        src: 'images/PLAX.jpg'
+        id: 'PLAX'
+    }
+    _.defaults manifest, defaults
+    console.log 'interactiveInfo', manifest
+    return new Modal {
+        header: title
+        template: 'interactive'
+        manifest: manifest
+    }
+
 
 
 Modal::setDefaults = (defaults) ->
@@ -133,6 +147,7 @@ Modal::show = (modal)->
 
 
 modalCurries = {
+    interactiveModal: Modal::interactive
     videoModal: Modal::video
     modalDashboard: Modal::curry {
         header: "#{Meteor.user()?.emails[0]?.address} Dashboard."
