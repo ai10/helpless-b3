@@ -1,5 +1,5 @@
 <template name="videoModal">
-<div id="{{ _id }}" class="modal fade in">
+<div id="{{ _id }}" class="modal fade in" style="display: block;" aria-hidden="false">
  <div class=modal-dialog">
      <div class="modal-content">
          <div class="modal-header">
@@ -7,11 +7,12 @@
                  <span class="close glyphicon glyphicon-remove"></span>
              </button>
              <h4 class="modal-title">{{ header }}</h4>
-             {{> modalClock }}
          </div><!-- /.modal header -->
          <div class="modal-body">
              <div class="jumbotron">
-                 <p>videoModal</p>
+                 {{#with video}}
+                   {{> videojs }}
+                 {{/with}}
              </div>
          </div>
          <div class="modal-footer">
@@ -133,7 +134,6 @@
                  <span class="close glyphicon glyphicon-remove"></span>
              </button>
              <h4 class="modal-title">{{ header }}</h4>
-             {{> modalClock }}
          </div><!-- /.modal header -->
          <div class="modal-body">
              <div class="jumbotron">

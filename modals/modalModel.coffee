@@ -83,7 +83,7 @@ Modal::defaults = {
             value: ""
             label: "label"
             validation: ""
-    }
+}
 
 
 Modal::curry = (extension)->
@@ -92,6 +92,25 @@ Modal::curry = (extension)->
         options.header = header
         a = _.extend a, options
         return new Modal a
+
+Modal::video = (title, videoInfo) ->
+    videoInfo = videoInfo or {}
+    videoDefaults = {
+        id: 'modalVideo'
+        poster: 'poster.jpg'
+        title: 'movie.mp4'
+        videoType: 'video/mp4'
+    }
+
+    _.defaults videoInfo, videoDefaults
+    console.log 'videoInfo', videoInfo
+    return new Modal {
+        header: title
+        template: 'video'
+        video: videoInfo
+    }
+
+
 
 Modal::setDefaults = (defaults) ->
     oldDefaults = @defaults
@@ -114,13 +133,10 @@ Modal::show = (modal)->
 
 
 modalCurries = {
+    videoModal: Modal::video
     modalDashboard: Modal::curry {
         header: "#{Meteor.user()?.emails[0]?.address} Dashboard."
         template: 'dashboard'
-    }
-    modalVideo: Modal::curry {
-        header: "Video"
-        template: 'video'
     }
     modalCanvas: Modal::curry {
         header: "Canvas"
