@@ -113,7 +113,7 @@ Modal::video = (title, videoInfo) ->
 Modal::interactive = (title, manifest) ->
     info = info or {}
     defaults = {
-        src: 'images/PLAX.jpg'
+        src: '/images/PLAX.jpg'
         id: 'PLAX'
     }
     _.defaults manifest, defaults
