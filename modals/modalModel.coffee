@@ -101,7 +101,6 @@ Modal::video = (parent, videoInfo) ->
         title: 'movie.mp4'
         videoType: 'video/mp4'
     }
-
     _.defaults videoInfo, videoDefaults
     return new Modal {
         breadcrumb: parent?.id or 0
@@ -109,22 +108,6 @@ Modal::video = (parent, videoInfo) ->
         template: 'video'
         video: videoInfo
     }
-
-Modal::interactive = (parent, manifest) ->
-    info = info or {}
-    defaults = {
-        src: '/images/PLAX.jpg'
-        id: 'PLAX'
-    }
-    _.defaults manifest, defaults
-    return new Modal {
-        breadcrumb: parent?.id or 0
-        header: parent?.title or 0
-        template: 'interactive'
-        manifest: manifest
-    }
-
-
 
 Modal::setDefaults = (defaults) ->
     oldDefaults = @defaults
