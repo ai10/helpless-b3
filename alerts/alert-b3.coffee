@@ -181,20 +181,40 @@ b3.Alert = Alert
 Template.b3AlertList.helpers
     alerts: ->
         Alerts.find({region: @region}).fetch()
-    vertical: ->
-        if /top/i.test(@region)
-            return 'topAlert'
-        if /middle/i.test(@region)
+    zindex: ->
+        if /middle/i.test @region
+            return "z-index: 2020;"
+        if /right/i.test @region
+            return "z-index: 2060;"
+        ""
+
+    middle: ->
+        if /middle/i.test @region
             return 'middleAlert'
+        ""
+    center: ->
+        if /center/i.test @region
+            return 'centerAlert'
+        ""
+    vertical: ->
+        scrollTop = $(window).scrollTop()
+        console.log 'scrolltop', scrollTop
+        height = $(window).height()
+        console.log 'window high:', height
+        nav = $('div.navbar-fixed-top').height()
+        if /top/i.test(@region)
+            return "top: #{scrollTop+nav}px;"
+        if /middle/i.test(@region)
+            return "top: #{scrollTop+(height/2)}px;"
         if /bottom/i.test(@region)
-            return 'bottomAlert'
+            return "top: #{scrollTop+height-nav}px;"
     horizontal: ->
         if /left/i.test(@region)
-            return 'leftAlert'
+            return "left: 7px;"
         if /center/i.test(@region)
-            return 'centerAlert'
+            return "right: 50%;"
         if /right/i.test(@region)
-            return 'rightAlert'
+            return "right: 7px;"
 
 Template.b3AlertsContainer.helpers
     regions: ->

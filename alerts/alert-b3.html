@@ -37,7 +37,8 @@
 </template>
 
 <template name="b3AlertList">
-<ul class="b3AlertList {{vertical}} {{horizontal}} list-group">
+<ul class="b3AlertList list-group {{ middle}} {{ center}} "
+    style=" {{ zindex }} {{ vertical }} {{ horizontal }}">
     {{#each alerts}}
       {{> b3Alert }}
     {{/each}}
