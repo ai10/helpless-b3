@@ -9,21 +9,22 @@ Template.modalStage.modals = ->
     [m]
 
 Template.modalStage.height = ->
-    console.log 'modal height', @
-    405
+    height = $(window).height()
+    nav = $('nav').height()
+    finalH = height-nav
+    finalH
 
 Template.modalStage.top = ->
-    console.log 'modal top', @
-    100
+    nav = $('div.navbar').height()
+    console.log 'nav', nav
+    nav
 
 Template.modalStage.events(
     'click button.close': ->
-        console.log 'modalheader', @
         Modals.remove @_id
 
     'click div.modal-backdrop': ->
         id = $('div.modal').attr 'id'
-        console.log 'modalbackdrop', id
         Modals.remove id
 )
 
