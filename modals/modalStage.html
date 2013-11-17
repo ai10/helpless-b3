@@ -1,27 +1,75 @@
 <template name="modalStage">
 {{#if showModal}}
-<div class="modal-backdrop fade id"></div>
+<div class="modal-backdrop fade in"></div>
+{{#each modals }}
+<div id="{{ _id }}" 
+    class="modal fade in col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" 
+    style="top: {{ top }}px; overflow: auto; display: block;" 
+    aria-hidden="false"
+    >
+ <div class=modal-dialog">
+     <div class="modal-content">
+         <div class="modal-header">
+             <button id="{{ _id }}" class="close" data-dismiss="modal">
+                 <span class="close glyphicon glyphicon-remove"></span>
+             </button>
+             <div class="col-sm-6 col-md-4">
+                {{ header }}
+             </div>
+         </div><!-- /.modal header -->
+         <div class="modal-body"
+             style="height: {{ height }}px;">
+           {{#if isTemplate 'standard' }}
+             {{> standardModal }}
+           {{/if}}
+           {{#if isTemplate 'video' }}
+             {{> videoModal }}
+           {{/if}}
+           {{#if isTemplate 'canvas' }}
+             {{> canvasModal }}
+           {{/if}}
+           {{#if isTemplate 'answer' }}
+             {{> answerModal }}
+           {{/if}}
+           {{#if isTemplate 'multiplechoice' }}
+             {{> multiplechoice }}
+           {{/if}}
+           {{#if isTemplate 'interactive' }}
+             {{> interactive }}
+           {{/if}}
+         </div><!-- /.modal-body -->
+         <div class="modal-footer">
+            <span class="label label-{{type}}">{{ footer.header }}</span> 
+            <span class="text-center">{{ footer.text }}</span>
+            <form role="form">
+             {{#if dialog }}
+                <div class="form-group">
+                         <label for="dialogForm">{{ footer.label }}</label>
+                         <input type="{{ inputType }}"
+                         id="{{_id}}"
+                         class="{{ selectClass }} form-control b3" 
+                         placeholder="{{ placeholder }}"
+                         {{ validation }}
+                         value="{{ value }}"
+                         required title="{{ label }}" 
+                         />
+                </div><!-- /.form-group -->
+             {{/if}}
+             {{#if confirmation}}
+             <button type="button" id="{{ selectId }}" class="btn {{ buttonClass }}">
+                   <span class="{{ buttonIcon }} ">{{ buttonText }} </span>
+             </button>
+             {{#if showAltButton }}
+             <button type="button" id="{{ altSelectId }}" class="btn {{ altButtonClass}} ">
+                 <span class="{{ altButtonIcon }}">{{ altButtonText }}</span>
+             </button>
+             {{/if}}
+             {{/if}}
+           </form>
+         </div><!-- /.footer -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+{{/each}}
 {{/if}}
-<ul class="modalStage list-group">
-  {{#each modals }}
-   {{#if isTemplate 'standard' }}
-     {{> standardModal }}
-   {{/if}}
-   {{#if isTemplate 'video' }}
-     {{> videoModal }}
-   {{/if}}
-   {{#if isTemplate 'canvas' }}
-     {{> canvasModal }}
-   {{/if}}
-   {{#if isTemplate 'answer' }}
-     {{> answerModal }}
-   {{/if}}
-   {{#if isTemplate 'multiplechoice' }}
-     {{> multiplechoice }}
-   {{/if}}
-   {{#if isTemplate 'interactive' }}
-     {{> interactive }}
-   {{/if}}
-   {{/each}}
-</ul>
 </template>

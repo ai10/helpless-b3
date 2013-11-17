@@ -58,19 +58,23 @@ Modal::defaults = {
             header: "Modal."
             template: 'standardModal'
             text: ""
+            footer:
+                header:'footerheader'
+                text: 'footertext'
+                label: 'footerlabel'
             link: false
             dialog: false
             confirmation: false
             block: ""
             soundoff: ""
             buttonClass: "btn btn-info"
-            selectClass: "selectClass"
+            selectId: "footerButton"
             buttonLink: "#"
             buttonText: " Confirm"
             buttonIcon: "glyphicon glyphicon-send"
-            showAltButton: false
-            altSelectClass: "altSelectClass"
-            altButtonClass: "btn btn-default"
+            showAltButton: true
+            altSelectId: "altFooterButton"
+            altButtonClass: "btn btn-warning"
             altButtonLink: "#"
             altButtonText: " Cancel"
             altButtonIcon: 'glyphicon glyphicon-remove-sign'
@@ -102,6 +106,7 @@ Modal::video = (parent, videoInfo) ->
         videoType: 'video/mp4'
     }
     _.defaults videoInfo, videoDefaults
+    console.log 'modalVid', videoInfo
     return new Modal {
         breadcrumb: parent?.id or 0
         header: parent?.title or 'Modal'

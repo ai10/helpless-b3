@@ -198,9 +198,7 @@ Template.b3AlertList.helpers
         ""
     vertical: ->
         scrollTop = $(window).scrollTop()
-        console.log 'scrolltop', scrollTop
         height = $(window).height()
-        console.log 'window high:', height
         nav = $('div.navbar-fixed-top').height()
         if /top/i.test(@region)
             return "top: #{scrollTop+nav}px;"

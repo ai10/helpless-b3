@@ -31,12 +31,13 @@ Package.on_use(function (api) {
     'modals/modalStage.coffee',
     'modals/modalModel.coffee',
     'modals/modal-b3.coffee',
+    'modals/modal-b3.less',
     'tooltips/tooltip-b3.html',
     'tooltips/tooltip-b3.coffee',
     ], ['client']);
     
     api.export(
-        'b3'
+        ['b3', 'bootbox']
         , ['client', 'server']);
 
 });
