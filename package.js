@@ -5,13 +5,11 @@ Package.describe({
 Package.on_use(function (api) {
     api.use(['standard-app-packages', 'less', 'underscore', 'jquery'], 'client');
     api.use(['coffeescript'], ['client', 'server']);
-    var path = Npm.require('path');
-    var asset_path = path.join('lib');
-    api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.eot'), 'client');
-    api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.ttf'), 'client');
-    api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.svg'), 'client');
+    api.add_files('lib/fonts/glyphicons-halflings-regular.eot'), 'client');
+    api.add_files('lib/fonts/glyphicons-halflings-regular.ttf'), 'client');
+    api.add_files('lib/fonts/glyphicons-halflings-regular.svg'), 'client');
     
-    api.add_files(path.join(asset_path, 'fonts','glyphicons-halflings-regular.woff'), 'client');
+    api.add_files(path.join('lib/fonts/glyphicons-halflings-regular.woff'), 'client');
 
     api.add_files('b3.coffee', ['client', 'server']);
 
