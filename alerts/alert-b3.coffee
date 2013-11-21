@@ -199,13 +199,17 @@ Template.b3AlertList.helpers
     vertical: ->
         scrollTop = $(window).scrollTop()
         height = $(window).height()
-        nav = $('div.navbar-fixed-top').height()
+        nav = $('.navbar-fixed-top').height()
         if /top/i.test(@region)
             return "top: #{scrollTop+nav}px;"
         if /middle/i.test(@region)
             return "top: #{scrollTop+(height/2)}px;"
         if /bottom/i.test(@region)
-            return "top: #{scrollTop+height-nav}px;"
+            count = Alerts.find({ region: @region }).count()
+            if not count?
+                count = 1
+            offset = (count+1)*nav
+            return "top: #{scrollTop+height-offset}px;"
     horizontal: ->
         if /left/i.test(@region)
             return "left: 7px;"
