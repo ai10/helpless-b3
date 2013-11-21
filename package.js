@@ -8,12 +8,12 @@ Package.on_use(function (api) {
     api.add_files([
     'lib/fonts/glyphicons-halflings-regular.eot',
     'lib/fonts/glyphicons-halflings-regular.ttf',
-    'lib/fonts/glyphicons-halflings-regular.svg'
+    'lib/fonts/glyphicons-halflings-regular.svg',
+    'lib/fonts/glyphicons-halflings-regular.woff'
     ], 'client', {
         isAsset: true
     });
     
-    api.add_files(path.join('lib/fonts/glyphicons-halflings-regular.woff'), 'client');
 
     api.add_files('b3.coffee', ['client', 'server']);
 

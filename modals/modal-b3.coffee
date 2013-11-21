@@ -1,6 +1,12 @@
 b3 = @b3
 
 #rendering
+Template.modalStage.height = ->
+    540
+
+Template.modalStage.width = ->
+    800
+
 Template.videoModal.rendered = ->
 
     return true
