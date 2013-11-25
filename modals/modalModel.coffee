@@ -137,10 +137,6 @@ Modal::show = (modal)->
 modalCurries = {
     interactiveModal: Modal::interactive
     videoModal: Modal::video
-    dashboardModal: Modal::curry {
-        header: "#{Meteor.user()?.emails[0]?.address} Dashboard."
-        template: 'dashboard'
-    }
     canvasModal: Modal::curry {
         header: "Canvas"
         template: 'canvas'
