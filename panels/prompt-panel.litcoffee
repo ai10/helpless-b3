@@ -23,13 +23,13 @@ Prompt panel w/ bootstrap 3, Meteor.
         headerIcon: "glyphicon glyphicon-log-in"
         header: "Authentication."
         text: ""
-        type: 'panel-info'
+        type: 'info'
         labelType: 'info'
         dialog: true
         confirmation: true
         legendIcon: "glyphicon glyphicon-envelope"
         legend: "Email identity."
-        placeholder: "input email"
+        placeholder: ""
         buttonClass: "btn btn-info"
         selectClass: "selectClass"
         buttonLink: "#"
@@ -77,6 +77,9 @@ Prompt panel w/ bootstrap 3, Meteor.
         if typeof id is 'object'
             Prompts.remove id
 
+    Prompt::clearAll = ->
+        Prompts.remove {}
+
     Template.b3Prompt.rendered = ->
         if @data.dialog
             if @data.value.length > 1 then return
@@ -88,10 +91,11 @@ Prompt panel w/ bootstrap 3, Meteor.
             ,
                 100
 
-    Template.b3Prompt.events = ->
-        'click button.close': (e, t)->
-            e.preventDefault()
-            Prompt::remove(@_id)
+    Template.b3Prompt.events
+         'click button.close': (e, t)->
+             e.preventDefault()
+             console.log 'click close'
+             Prompt::remove @_id
 
 
     Template.promptStage.prompts = ->
