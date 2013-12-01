@@ -4,7 +4,7 @@
 {{#each modals }}
 <div id="{{ _id }}" 
     class="modal fade in" 
-    style="top: {{ top }}px; height: {{ height }}px; width: {{ width }}px; margin-left:auto; margin-right:auto; overflow: auto; display: block;" 
+    style="top: {{ top }}px; height: {{ height }}px; width: {{ width }}px; margin-left:auto; margin-right:auto;display: block;" 
     aria-hidden="false"
     >
  <div class=modal-dialog">
@@ -18,7 +18,7 @@
              </div>
          </div><!-- /.modal header -->
          <div class="modal-body"
-             style="height: {{ height }}px;">
+             style="">
            {{#if isTemplate 'standard' }}
              {{> standardModal }}
            {{/if}}

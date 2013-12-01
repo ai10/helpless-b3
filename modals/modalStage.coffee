@@ -10,14 +10,19 @@ Template.modalStage.modals = ->
 
 Template.modalStage.height = ->
     height = $(window).height()
-    nav = $('nav').height()
+    nav = $('div.navbar').height()
     finalH = height-nav
-    finalH
+    if finalH > 445 then return 445
+    0.85*445
+
+Template.modalStage.width = ->
+    width = $(window).width()
+    if width > 800 then return 750
+    0.85*820
 
 Template.modalStage.top = ->
     nav = $('div.navbar').height()
-    console.log 'nav', nav
-    nav
+    nav-25
 
 Template.modalStage.events(
     'click button.close': ->

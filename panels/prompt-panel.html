@@ -1,0 +1,22 @@
+<template name="promptPanel">
+<div class="panel {{ panel-type }}">
+    <div class="panel-heading">{{ heading }}</div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>{{ legend }}</legend>
+                <div class="form-group">
+                    <label 
+                        for="{{ inputFor }}" 
+                        class="control-label">{{ label }}</label>
+                    <input 
+                    type="{{ inputType }}" 
+                    class="form-control" 
+                    id="{{ inputFor }}"
+                    placeholder="{{ placeholder }}">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+</template>
