@@ -5,13 +5,13 @@
     <button class="close">
         <span class="close glyphicon glyphicon-remove"></span>
     </button>
-        <span class="label label-{{labelType}}">{{ header }}</span>
+        <span class="label label-{{ type }}">{{ header }}</span>
         <span class="text-center">{{ text }}</span>
     </div>
     <div class="panel-body">
         <form class="form-horizontal">
             <fieldset>
-                <legend>{{ legend }}</legend>
+                <legend><span class="{{ icon }}"></span></legend>
                 <div class="well">
                 {{#if dialog }}
                 <div class="form-group">
@@ -24,6 +24,7 @@
                     id="{{ _id }}"
                     placeholder="{{ placeholder }}"
                     value="{{ value }}"
+                    {{ validation }}
                     required title="{{ label }}">
                 </div><!-- /.form-group -->
                 {{/if}}
@@ -35,9 +36,10 @@
                 {{#if showAltButton }}
                 <button type="button" class="{{ altSelectClass }} btn btn-block {{ altButtonClass }}">
                     <span class="{{ altButtonIcon }}">{{ altButtonText }}</span>
+                </button>
                 {{/if}}
                 {{/if}}
-            </div>
+            </div><!-- /.well -->
             </fieldset>
         </form>
     </div><!-- /.panel-body -->
