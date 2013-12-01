@@ -1,0 +1,16 @@
+.ultrasoundbackground {
+  background-image:url('/images/spiral4.jpeg');
+  background-size: auto;
+}
+.greenspiralbackground {
+  background-image:url('/images/greensprial1.jpg');
+  background-size: auto;
+}
+div#navbar-padding {
+    padding-top: 42px;
+}
+
+div#navbar-padding.crumby {
+    padding-top: 120px;
+}
+

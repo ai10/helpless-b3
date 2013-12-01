@@ -7,24 +7,24 @@ Alerts = new Meteor.Collection null
 
 Alert = (options)->
     if not (@ instanceof Alert) then return new Alert options
-    flashouts = (aId, lert) ->
-        if lert.timeout > 0
+    flashouts = (aId, alert) ->
+        if alert.timeout > 0
             tim1 = setTimeout( ->
                 Alerts.remove {_id: aId}
             ,
-                lert.timeout
+               alert.timeout
             )
-        if lert.alarm > 0
+        if alert.alarm > 0
             tim2 = setTimeout(->
                 Alerts.update {_id: aId}, {$set: {ringing: true}}
             ,
-                lert.alarm
+                alert.alarm
             )
-        if lert.hoverAfter > 0
+        if alert.hoverAfter > 0
             tim3 = setTimeout(->
                 Alerts.update {_id: aId}, {$set: {hoverDismiss: true}}
             ,
-                lert.hoverAfter
+                alert.hoverAfter
             )
 
         b3.timeouts[aId] = tim1
@@ -33,14 +33,14 @@ Alert = (options)->
         true
 
 
-    a = _.defaults options,  @defaults
-    a.timestamp = new Date().valueOf()
+    _.defaults options,  @defaults
+    options.timestamp = new Date().valueOf()
     if options.single?
         oldA = Alerts.findOne {single: options.single}
         id = oldA?._id
 
     if id?
-        Alerts.update id, a
+        Alerts.update id, options
         if b3.timeouts[id]?
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
@@ -48,9 +48,10 @@ Alert = (options)->
         if b3.hoverAfters[id]?
             clearTimeout b3.hoverAfters[id]
     else
-        id = Alerts.insert a
+        id = Alerts.insert options
 
-    flashouts id, a
+    flashouts id, options
+    oldA = null
     @id = id
 
 Alert::defaults = {

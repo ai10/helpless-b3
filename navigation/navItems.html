@@ -1,0 +1,31 @@
+<template name="navItems">
+<ul class='nav navbar-nav'>
+{{#each items}}
+  {{> navItem }}
+{{/each}}
+</ul>
+</template>
+<template name="navItem">
+  {{#if isDropdown }}
+  <li id="{{ _id }}" class="dropdown">
+  <a href="#"
+      class="dropdown-toggle"
+      data-toggle="dropdown">{{ title }} <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+      {{#each subItems }}
+      {{> navSubItem }}
+      {{/each}}
+  </ul>
+  </li>
+  {{else}}
+  <li id="{{ _id }}" class="navItem {{ class }}">
+    <a href="{{ link }}">{{ title }}</a>
+  </li>
+  {{/if}}
+</template>
+
+<template name="navSubItem">
+<li id="{{ _id }}" class="navItem {{ class }} {{ active }}">
+  <a href="{{ link }}">{{ title }}</a>
+</li>
+</template>
