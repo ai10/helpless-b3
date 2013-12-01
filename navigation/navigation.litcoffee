@@ -4,6 +4,10 @@ Navigation
 
     Template.navigator.clickcounter = 0
 
+    Template.navigator.brand = ->
+        console.log 'brand', @
+        'ultrasoundLearn'
+
     Template.navigator.events
       'click button.logoutBtn' : (e, t) ->
         Meteor.logout()

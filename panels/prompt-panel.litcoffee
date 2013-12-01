@@ -11,19 +11,88 @@ Prompt panel w/ bootstrap 3, Meteor.
          opts = _.defaults options, @defaults
 
          oldP = Prompts.findOne {}
-         id = oldP?._id
          
-         if id?
-             Prompts.update id, opts
+         if oldP?._id?
+             Prompts.update oldP._id, opts
 
          else
-             id = Prompts.insert p
+             Prompts.insert options
 
     Prompt::defaults = {
         panelType: 'prompt-default'
         headerIcon: "glyphicon glyphicon-log-in"
         header: "Authentication."
+        text: ""
+        type: 'panel-info'
+        labelType: 'info'
+        dialog: true
+        confirmation: true
         legendIcon: "glyphicon glyphicon-envelope"
         legend: "Email identity."
         placeholder: "input email"
+        buttonClass: "btn btn-info"
+        selectClass: "selectClass"
+        buttonLink: "#"
+        buttonText: " confirm"
+        buttonIcon: "glyphicon glyphicon-send"
+        showAltButton: false
+        altSelectClass: "altSelectClass"
+        altButtonClass: "btn btn-default"
+        altButtonLink: "#"
+        altButtonText: " cancel"
+        altButtonIcon: "glyphicon glyphicon-remove-sign"
+        inputType: "text"
+        value: ""
+        label: "Please input your email."
+        validation: ""
+    }
+
+    Prompt::scurry = (extension) ->
+        (text, options={})->
+            p = _.clone extension
+            options.text = text
+            _.extend p, options
+            new Prompt p
+
+    promptScurries = {
+        promptPassword: Prompt::scurry {
+            inputType: 'password'
+            placeholder: 'input password'
         }
+        promptEmail: Prompt::scurry {
+            inputType: 'email'
+            placeholder: 'input email'
+        }
+    }
+
+    _.each promptScurries, (v, k)->
+        b3[k] = v
+
+    b3.Prompt = Prompt
+
+
+    Prompt::remove = (id)->
+        if typeof id is 'string'
+            Prompts.remove { _id: id }
+        if typeof id is 'object'
+            Prompts.remove id
+
+    Template.b3Prompt.rendered = ->
+        if @data.dialog
+            if @data.value.length > 1 then return
+            first = @firstNode
+            setTimeout =>
+                $f = $(first).find('input')
+                $f?.parsley('destroy')?.parsley b3.parsley
+                $f?.focus()
+            ,
+                100
+
+    Template.b3Prompt.events = ->
+        'click button.close': (e, t)->
+            e.preventDefault()
+            Prompt::remove(@_id)
+
+
+    Template.promptStage.prompts = ->
+        Prompts.find({}).fetch()

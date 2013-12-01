@@ -219,7 +219,7 @@ Template.b3AlertList.helpers
         if /right/i.test(@region)
             return "right: 7px;"
 
-Template.b3AlertsContainer.helpers
+Template.alertsStage.helpers
     regions: ->
         regs = ['topRight', 'middleRight', 'bottomRight',
          'bottomCenter', 'bottomLeft', 'middleLeft',
