@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'less', 'underscore', 'jquery'], 'client');
+    api.use(['standard-app-packages', 'less', 'videojs-b3','underscore', 'jquery'], 'client');
     api.use(['coffeescript'], ['client', 'server']);
     api.add_files([
     'lib/fonts/glyphicons-halflings-regular.eot',
@@ -14,7 +14,6 @@ Package.on_use(function (api) {
         isAsset: true
     });
     
-
     api.add_files('b3.coffee', ['client', 'server']);
 
     api.add_files([
@@ -45,8 +44,15 @@ Package.on_use(function (api) {
     'tooltips/tooltip-b3.coffee',
     ], ['client']);
     
+   
+    api.add_files([
+    'themes/cyborg.min.css',
+    //'themes/yeti.css',
+    //
+    ], ['client']);
+
     api.export(
-        ['b3', 'bootbox']
+        ['b3']
         , ['client', 'server']);
 
 });

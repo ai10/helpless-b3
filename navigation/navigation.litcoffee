@@ -1,12 +1,13 @@
 Navigation 
 ====
 
+    
+    b3 = @b3
 
     Template.navigator.clickcounter = 0
 
     Template.navigator.brand = ->
-        console.log 'brand', @
-        'ultrasoundLearn'
+        b3.brand
 
     Template.navigator.events
       'click button.logoutBtn' : (e, t) ->
@@ -34,7 +35,6 @@ Navigation
         return null
 
     Template.navigator.rendered = ->
-        console.log 'navigator rendered'
 
     Template.navigator.created = () ->
 

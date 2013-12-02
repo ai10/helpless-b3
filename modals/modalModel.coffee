@@ -106,7 +106,6 @@ Modal::video = (parent, videoInfo) ->
         videoType: 'video/mp4'
     }
     _.defaults videoInfo, videoDefaults
-    console.log 'modalVid', videoInfo
     return new Modal {
         breadcrumb: parent?.id or 0
         header: parent?.title or 'Modal'

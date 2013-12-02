@@ -6,14 +6,13 @@ Prompt panel w/ bootstrap 3, Meteor.
     Prompts = new Meteor.Collection null
 
     Prompt = (options) ->
-         if not (@ instanceof Prompt) then return new Prompt
-         console.log 'pop', options
+         if not (@ instanceof Prompt) then return new Prompt options
          _.defaults options, @defaults
 
          oldP = Prompts.findOne {}
          
          if oldP?._id?
-             Prompts.update oldP._id, opts
+             Prompts.update oldP._id, options
 
          else
              Prompts.insert options
@@ -94,7 +93,6 @@ Prompt panel w/ bootstrap 3, Meteor.
     Template.b3Prompt.events
          'click button.close': (e, t)->
              e.preventDefault()
-             console.log 'click close'
              Prompt::remove @_id
 
 

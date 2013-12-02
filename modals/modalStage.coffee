@@ -4,7 +4,6 @@ Template.modalStage.rendered = ->
     modalWidth = $('.modal-body').width()
 
 Template.modalStage.modals = ->
-    console.log 'modals', @
     m = Modals.findOne()
     [m]
 
