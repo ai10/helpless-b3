@@ -1,30 +1,12 @@
 b3-helpless
 ==
 
-bootstrap 3 less files with meteor style javascript.
+bootstrap 3 less files with meteor style javascript. (beta)
+see http://mib3.meteor.com
 
 ##API
 
 b3 is the exported handle.
-
-###dynaSign
-
-An inline navbar widget for dynamically interacting with user.
-
-add keys.coffee file with a  mailgun.com public-api-key for e-mail validation.
-
-```coffeescript
-@b3.validate_api_key = '<mailgun.com public-api-key>'
-```
-Insert into your navbar.
-
-```handlebars
-
-<ul class="nav navbar-nav navbar-right">
-  {{> dynaSign}}
-</ul>
-
-```
 
 
 ###Alerts
@@ -86,4 +68,35 @@ b3.alertSuccess "This has a new class 'ringing' after 2 seconds.", {
     ringing: 'ringing'
 }
 
+```
+
+#Prompt Panels
+
+Bootstrap styled panel floating absolutely with your options.
+
+```coffeescript
+b3.Prompt {
+    text: 'Some text'
+    icon: 'glyphicon glyphicon-thumbs-up'
+}
+```
+
+#Modals
+
+Launch a modal with key fields
+
+```coffeescript
+b3.videoModal context, {
+    poster: '/poster.jpg'
+    src: '/video.mp4'
+}
+```
+
+also short hand for 'canvasModal', 'choiceModal', etc..
+
+#Navigator
+Set Nav links per the Iron-router route.
+
+```coffeescript
+TODO
 ```

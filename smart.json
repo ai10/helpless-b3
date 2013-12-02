@@ -1,0 +1,9 @@
+{
+    "name": "helpless-b3",
+    "description": "Bootstrap 3 templates with helpers. http://mib3.meteor.com",
+    "homepage": "https://github.com/charlesjshort/helpless-b3",
+    "author": "Charles J. Short",
+    "version": "0.1.0",
+    "git": "https://github.com/charlesjshort/helpless-b3.git",
+    "packages": {}
+}
