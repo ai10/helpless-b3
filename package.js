@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use(['standard-app-packages', 'less', 'underscore', 'jquery'], 'client');
+    api.use(['standard-app-packages', 'less', 'videojs-b3','underscore', 'jquery'], 'client');
     api.use(['coffeescript'], ['client', 'server']);
     api.add_files([
     'lib/fonts/glyphicons-halflings-regular.eot',
@@ -52,7 +52,7 @@ Package.on_use(function (api) {
     ], ['client']);
 
     api.export(
-        ['b3', 'bootbox']
+        ['b3']
         , ['client', 'server']);
 
 });
