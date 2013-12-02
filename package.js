@@ -14,7 +14,6 @@ Package.on_use(function (api) {
         isAsset: true
     });
     
-
     api.add_files('b3.coffee', ['client', 'server']);
 
     api.add_files([
@@ -45,6 +44,13 @@ Package.on_use(function (api) {
     'tooltips/tooltip-b3.coffee',
     ], ['client']);
     
+   
+    api.add_files([
+    'themes/cyborg.min.css',
+    //'themes/yeti.css',
+    //
+    ], ['client']);
+
     api.export(
         ['b3', 'bootbox']
         , ['client', 'server']);
