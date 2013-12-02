@@ -6,14 +6,14 @@ Prompt panel w/ bootstrap 3, Meteor.
     Prompts = new Meteor.Collection null
 
     Prompt = (options) ->
-         if not (@ instanceof Prompt) then return new Prompt
-
-         opts = _.defaults options, @defaults
+         if not (@ instanceof Prompt) then return new Prompt options
+         
+         _.defaults options, @defaults
 
          oldP = Prompts.findOne {}
          
          if oldP?._id?
-             Prompts.update oldP._id, opts
+             Prompts.update oldP._id, options
 
          else
              Prompts.insert options
