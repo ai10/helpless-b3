@@ -94,7 +94,6 @@ Prompt panel w/ bootstrap 3, Meteor.
     Template.b3Prompt.events
          'click button.close': (e, t)->
              e.preventDefault()
-             console.log 'click close'
              Prompt::remove @_id
 
 

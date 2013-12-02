@@ -35,7 +35,6 @@ Navigation
         return null
 
     Template.navigator.rendered = ->
-        console.log 'navigator rendered', @
 
     Template.navigator.created = () ->
 
