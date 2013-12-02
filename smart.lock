@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "helpless-b3": {
+        "path": "."
+      }
+    },
+    "packages": {
+      "helpless-b3": {
+        "path": "."
+      }
+    }
+  }
+}
