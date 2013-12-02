@@ -7,8 +7,8 @@ Prompt panel w/ bootstrap 3, Meteor.
 
     Prompt = (options) ->
          if not (@ instanceof Prompt) then return new Prompt
-
-         opts = _.defaults options, @defaults
+         console.log 'pop', options
+         _.defaults options, @defaults
 
          oldP = Prompts.findOne {}
          
