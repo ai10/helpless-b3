@@ -22,6 +22,7 @@ Package.on_use(function (api) {
     'lib/js/popover.js',
     'lib/js/transition.js',
     'lib/js/modal.js',
+    'lib/js/collapse.js',
     'b3.less',
     'helpless.html',
     'navigation/navigation.html',
