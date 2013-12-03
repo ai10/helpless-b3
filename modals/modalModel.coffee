@@ -64,7 +64,7 @@ Modal::defaults = {
                 label: 'footerlabel'
             link: false
             dialog: false
-            confirmation: false
+            confirmation: true
             block: ""
             soundoff: ""
             buttonClass: "btn btn-info"
@@ -107,7 +107,6 @@ Modal::video = (parent, videoInfo) ->
     }
     _.defaults videoInfo, videoDefaults
     return new Modal {
-        breadcrumb: parent?.id or 0
         header: parent?.title or 'Modal'
         template: 'video'
         video: videoInfo
@@ -136,22 +135,6 @@ Modal::show = (modal)->
 modalCurries = {
     interactiveModal: Modal::interactive
     videoModal: Modal::video
-    canvasModal: Modal::curry {
-        header: "Canvas"
-        template: 'canvas'
-    }
-    choiceModal: Modal::curry {
-        header: "Choice"
-        template: 'choice'
-    }
-    answerModal: Modal::curry {
-        header: "Answer"
-        template: 'answer'
-    }
-    modal: Modal::curry {
-        header: "Standard"
-        template: 'standard'
-    }
     modalSetDefaults: Modal::setDefaults
 }
 
@@ -160,5 +143,3 @@ _.each modalCurries, (v, k) ->
 
 
 b3.Modal = Modal
-
-

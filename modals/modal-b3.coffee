@@ -2,21 +2,11 @@ b3 = @b3
 
 #rendering
 Template.modalStage.height = ->
-    540
+    0.85*$(window).height()
 
 Template.modalStage.width = ->
-    800
+    0.85*$(window).width()
 
 Template.videoModal.rendered = ->
-
     return true
 
-Template.dashboardModal.rendered = ->
-
-Template.canvasModal.rendered = ->
-
-Template.standardModal.rendered = ->
-
-Template.choiceModal.rendered = ->
-
-Template.answerModal.rendered = ->

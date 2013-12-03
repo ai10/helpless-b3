@@ -19,20 +19,8 @@
          </div><!-- /.modal header -->
          <div class="modal-body"
              style="">
-           {{#if isTemplate 'standard' }}
-             {{> standardModal }}
-           {{/if}}
            {{#if isTemplate 'video' }}
              {{> videoModal }}
-           {{/if}}
-           {{#if isTemplate 'canvas' }}
-             {{> canvasModal }}
-           {{/if}}
-           {{#if isTemplate 'answer' }}
-             {{> answerModal }}
-           {{/if}}
-           {{#if isTemplate 'multiplechoice' }}
-             {{> multiplechoice }}
            {{/if}}
            {{#if isTemplate 'interactive' }}
              {{> interactive }}
