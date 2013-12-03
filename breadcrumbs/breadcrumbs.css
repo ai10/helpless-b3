@@ -2,10 +2,10 @@ div.breadcrumbs {
     position: fixed;
     top: 36px;
     left: 75px;
-    z-index: 10000;
+    z-index: 1030;
 }
 ol.breadcrumb {
-    padding: 1px 5px;
+    padding: 0px 5px 1px 0px;
 }
 ol.breadcrumb > li.active > a {
     color: #7a8288
