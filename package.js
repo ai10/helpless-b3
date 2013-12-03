@@ -14,7 +14,7 @@ Package.on_use(function (api) {
         isAsset: true
     });
     
-    api.add_files('b3.coffee', ['client', 'server']);
+    api.add_files('b3.coffee', ['client']);
 
     api.add_files([
     'lib/js/tooltip.js',
@@ -26,9 +26,13 @@ Package.on_use(function (api) {
     'b3.less',
     'helpless.html',
     'navigation/navigation.html',
+    'navigation/navbar.css',
     'navigation/navItems.html',
     'navigation/navItems.litcoffee',
     'navigation/navigation.litcoffee',
+    'breadcrumbs/breadcrumbs.html',
+    'breadcrumbs/breadcrumbs.litcoffee',
+    'breadcrumbs/breadcrumbs.css',
     'panels/prompt-panel.html',
     'panels/prompt-panel.litcoffee',
     'panels/panels-b3.less',

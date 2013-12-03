@@ -1,0 +1,12 @@
+<template name="breadcrumbs">
+{{#if breadcrumbs }}
+  <div class="breadcrumbs">
+      <ol class="breadcrumb">
+          <li></li>
+      {{#each breadcrumbs}}
+      <li class="{{ isActive }}"><a href="{{ path }}">{{ title }}</a></li>
+      {{/each}}
+  </ol>
+  </div>
+{{/if}}
+</template>

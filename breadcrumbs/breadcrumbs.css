@@ -1,0 +1,12 @@
+div.breadcrumbs {
+    position: fixed;
+    top: 36px;
+    left: 75px;
+    z-index: 10000;
+}
+ol.breadcrumb {
+    padding: 1px 5px;
+}
+ol.breadcrumb > li.active > a {
+    color: #7a8288
+}
