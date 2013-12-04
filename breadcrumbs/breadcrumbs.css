@@ -1,7 +1,5 @@
 div.breadcrumbs {
     position: fixed;
-    top: 36px;
-    left: 75px;
     z-index: 1030;
 }
 ol.breadcrumb {
