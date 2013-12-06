@@ -23,7 +23,7 @@
              {{> videoModal }}
            {{/if}}
            {{#if isTemplate 'interactive' }}
-             {{> interactive }}
+             {{> interactiveCanvas }}
            {{/if}}
          </div><!-- /.modal-body -->
          <div class="modal-footer">
@@ -44,8 +44,8 @@
                 </div><!-- /.form-group -->
              {{/if}}
              {{#if confirmation}}
-             <button type="button" id="{{ selectId }}" class="btn {{ buttonClass }}">
-                   <span class="{{ buttonIcon }} ">{{ buttonText }} </span>
+                 <div class="form-group">
+                     <button type="button" id="{{ selectId }}" class="btn {{ buttonClass }}"><span class="{{ buttonIcon }} ">{{ buttonText }} </span>
              </button>
              {{#if showAltButton }}
              <button type="button" id="{{ altSelectId }}" class="btn {{ altButtonClass}} ">
@@ -53,11 +53,28 @@
              </button>
              {{/if}}
              {{/if}}
-           </form>
+           </div><!-- /.form-group -->
+       </form>
+       {{#if isSequence}}
+         {{> modalPagination }}
+       {{/if}}
          </div><!-- /.footer -->
         </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
  </div><!-- /.modal -->
 {{/each}}
 {{/if}}
+</template>
+<template name="modalPagination">
+<ul class="pager">
+    {{#if isPrev}}
+    <li class="previous"><a href="#">&larr; Prev.</a></li>
+    {{/if}}
+    {{#if isNext}}
+    <li class="next"><a href="#">Next &rarr;</a></li>
+    {{/if}}
+    {{#if isFinish}}
+    <li class="finish"><a href="#">Finish</a></li>
+    {{/if}}
+</ul>
 </template>

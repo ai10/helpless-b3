@@ -8,29 +8,29 @@ Template.modalStage.modals = ->
     [m]
 
 Template.modalStage.height = ->
-    height = $(window).height()
-    nav = $('div.navbar').height()
-    finalH = height-nav
-    if finalH > 445 then return 445
-    0.85*445
+    0.85*$(window).height()
 
 Template.modalStage.width = ->
-    width = $(window).width()
-    if width > 800 then return 750
-    0.85*820
+    0.85*$(window).width()
 
 Template.modalStage.top = ->
     nav = $('div.navbar').height()
     nav-25
 
-Template.modalStage.events(
+Template.modalStage.events
     'click button.close': ->
         Modals.remove @_id
 
     'click div.modal-backdrop': ->
         id = $('div.modal').attr 'id'
         Modals.remove id
-)
+
+    'click button.next': ->
+        b3.nextModal()
+
+    'click button.previous': ->
+        b3.previousModal()
+
 
 Template.modalStage.showModal = ->
     m = Modals.findOne()
