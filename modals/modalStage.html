@@ -55,7 +55,7 @@
              {{/if}}
            </div><!-- /.form-group -->
        </form>
-       {{#if isSequence}}
+       {{#if isSequence }}
          {{> modalPagination }}
        {{/if}}
          </div><!-- /.footer -->
@@ -65,16 +65,4 @@
 {{/each}}
 {{/if}}
 </template>
-<template name="modalPagination">
-<ul class="pager">
-    {{#if isPrev}}
-    <li class="previous"><a href="#">&larr; Prev.</a></li>
-    {{/if}}
-    {{#if isNext}}
-    <li class="next"><a href="#">Next &rarr;</a></li>
-    {{/if}}
-    {{#if isFinish}}
-    <li class="finish"><a href="#">Finish</a></li>
-    {{/if}}
-</ul>
-</template>
+

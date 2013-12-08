@@ -45,6 +45,8 @@ Package.on_use(function (api) {
     'modals/modalModel.coffee',
     'modals/modal-b3.coffee',
     'modals/modal-b3.less',
+    'modals/modalPagination.html',
+    'modals/modalPagination.coffee',
     'tooltips/tooltip-b3.html',
     'tooltips/tooltip-b3.coffee',
     ], ['client']);

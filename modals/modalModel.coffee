@@ -1,7 +1,6 @@
 b3 = @b3
 @Modals = new Meteor.Collection null
 
-
 Modal = (options)->
     if not (@ instanceof Modal) then return new Modal options
     flashouts = (aId, mdl) ->
@@ -17,16 +16,9 @@ Modal = (options)->
             ,
                 mdl.alarm
             )
-        if mdl.hoverAfter > 0
-            tim3 = setTimeout(->
-                Modals.update {_id: aId}, {$set: {hoverDismiss: true}}
-            ,
-                mdl.hoverAfter
-            )
 
         b3.timeouts[aId] = tim1
         b3.alarms[aId] = tim2
-        b3.hoverAfters[aId] = tim3
         true
 
 
@@ -42,8 +34,6 @@ Modal = (options)->
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
             clearTimeout b3.alarms[id]
-        if b3.hoverAfters[id]?
-            clearTimeout b3.hoverAfters[id]
     else
         id = Modals.insert a
 
@@ -54,7 +44,6 @@ Modal::defaults = {
             type: 'default'
             icon: false
             timeout: false
-            region: 'topRight'
             header: "Modal."
             template: 'standardModal'
             text: ""
@@ -79,8 +68,6 @@ Modal::defaults = {
             altButtonText: " Cancel"
             altButtonIcon: 'glyphicon glyphicon-remove-sign'
             inputType: "text"
-            hoverDismiss: false
-            hoverAfter: -1
             alarm: false
             ringing: false
             placeholder: ""
@@ -143,3 +130,53 @@ _.each modalCurries, (v, k) ->
 
 
 b3.Modal = Modal
+
+b3.modalSequence = (sequence) ->
+    unless _.isArray sequence then throw new Meteor.Error 415, 'sequence must be an array.'
+    list = _.sortBy sequence,(modal) ->
+        if modal.number? then return modal.number
+        if modal.rank? then return modal.rank
+        if modal.timestamp? then return modal.timstamp
+    console.log 'list', list
+    b3.modalSequenceList = list
+    b3.modalSequenceStep = 0
+    b3.toModal b3.modalSequenceStep
+
+b3.toModal = (step)->
+    unless typeof step is 'number' then throw new Meteor.Error 415, 'sequence must be an array.'
+    hasNext = false
+    hasPrevious = false
+    hasFinish = false
+    if step < (b3.modalSequenceList.length - 1)
+        hasNext = true
+    if step > 0
+        hasPrevious = true
+    if step is (b3.modalSequenceList.length - 1)
+        hasFinish = true
+
+    defaults = {
+        isSequence: true
+        hasNext: hasNext
+        hasPrevious: hasPrevious
+        hasFinish: hasFinish
+    }
+    modal = b3.modalSequenceList[step] or {}
+    _.defaults modal, defaults
+    console.log 'modal', modal
+    b3.modalSequenceStep = step
+    b3.Modal modal
+
+b3.nextModal = ->
+    lastStep = b3.modalSequenceStep
+    nextStep = lastStep + 1
+    if nextStep >= b3.modalSequenceList.length
+        throw new Meteor.Error 415, 'Step exceeds sequence length.'
+    b3.toModal nextStep
+
+b3.previousStep = ->
+    lastStep = b3.modalSequenceStep
+    previousStep = lastStep -1
+    if previousStep < 0
+        throw new Meteor.Error 415, 'Step before sequence bounds.'
+    b3.tomodal previousStep
+

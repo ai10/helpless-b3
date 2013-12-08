@@ -1,4 +1,5 @@
 Template.modalStage.created = ->
+    console.log 'createStage', @
 
 Template.modalStage.rendered = ->
     modalWidth = $('.modal-body').width()
@@ -17,6 +18,10 @@ Template.modalStage.top = ->
     nav = $('div.navbar').height()
     nav-25
 
+Template.modalStage.isSequence = ->
+    console.log 'isSequence', @isSequence
+    @isSequence
+
 Template.modalStage.events
     'click button.close': ->
         Modals.remove @_id
@@ -24,12 +29,6 @@ Template.modalStage.events
     'click div.modal-backdrop': ->
         id = $('div.modal').attr 'id'
         Modals.remove id
-
-    'click button.next': ->
-        b3.nextModal()
-
-    'click button.previous': ->
-        b3.previousModal()
 
 
 Template.modalStage.showModal = ->
