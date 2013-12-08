@@ -137,7 +137,6 @@ b3.modalSequence = (sequence) ->
         if modal.number? then return modal.number
         if modal.rank? then return modal.rank
         if modal.timestamp? then return modal.timstamp
-    console.log 'list', list
     b3.modalSequenceList = list
     b3.modalSequenceStep = 0
     b3.toModal b3.modalSequenceStep
@@ -162,7 +161,6 @@ b3.toModal = (step)->
     }
     modal = b3.modalSequenceList[step] or {}
     _.defaults modal, defaults
-    console.log 'modal', modal
     b3.modalSequenceStep = step
     b3.Modal modal
 
