@@ -176,10 +176,10 @@ b3.nextModal = ->
         throw new Meteor.Error 415, 'Step exceeds sequence length.'
     b3.toModal nextStep
 
-b3.previousStep = ->
+b3.previousModal = ->
     lastStep = b3.modalSequenceStep
-    previousStep = lastStep -1
+    previousStep = lastStep - 1
     if previousStep < 0
         throw new Meteor.Error 415, 'Step before sequence bounds.'
-    b3.tomodal previousStep
+    b3.toModal previousStep
 

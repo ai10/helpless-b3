@@ -1,12 +1,12 @@
 <template name="modalPagination">
 <ul class="pager">
-    {{#if hasPrev}}
+    {{#if hasPrevious }}
     <li class="previousModal"><a href="#">&larr; Prev.</a></li>
     {{/if}}
-    {{#if hasNext}}
+    {{#if hasNext }}
     <li class="nextModal"><a href="#">Next &rarr;</a></li>
     {{/if}}
-    {{#if isFinish}}
+    {{#if hasFinish }}
     <li class="finishSequence"><a href="#">Finish</a></li>
     {{/if}}
 </ul>

@@ -2,6 +2,11 @@
 {{#if showModal}}
 <div class="modal-backdrop fade in"></div>
 {{#each modals }}
+   {{> modalInstance }}
+{{/each}}
+{{/if}}
+</template>
+<template name="modalInstance">
 <div id="{{ _id }}" 
     class="modal fade in" 
     style="top: {{ top }}px; height: {{ height }}px; width: {{ width }}px; margin-left:auto; margin-right:auto;display: block;" 
@@ -14,7 +19,7 @@
                  <span class="close glyphicon glyphicon-remove"></span>
              </button>
              <div class="col-sm-6 col-md-4">
-                {{ header }}
+                {{ title }}
              </div>
          </div><!-- /.modal header -->
          <div class="modal-body"
@@ -27,8 +32,10 @@
            {{/if}}
          </div><!-- /.modal-body -->
          <div class="modal-footer">
-            <span class="label label-{{type}}">{{ footer.header }}</span> 
-            <span class="text-center">{{ footer.text }}</span>
+             {{#if isTemplate 'interactive' }}
+             <h4><span class="pull-left label label-primary">{{ caption }}</span></h4>
+             <p><span class="text-center">{{ question }}</span</p>
+             {{/if}}
             <form role="form">
              {{#if dialog }}
                 <div class="form-group">
@@ -62,7 +69,4 @@
         </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
  </div><!-- /.modal -->
-{{/each}}
-{{/if}}
 </template>
-
