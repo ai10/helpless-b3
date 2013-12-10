@@ -12,6 +12,8 @@ Template.modalPagination.events
         b3.toModal()
 
     'click li.finishSequence': ->
-        b3.finishSequence()
+        id = $('div.modal').attr 'id'
+        Modals.remove id
+
 
 

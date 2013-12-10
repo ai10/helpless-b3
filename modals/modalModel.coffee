@@ -53,7 +53,7 @@ Modal::defaults = {
                 label: 'footerlabel'
             link: false
             dialog: false
-            confirmation: true
+            confirmation: false
             block: ""
             soundoff: ""
             buttonClass: "btn btn-info"
