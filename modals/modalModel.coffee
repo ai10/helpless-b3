@@ -132,11 +132,14 @@ _.each modalCurries, (v, k) ->
 b3.Modal = Modal
 
 b3.modalSequence = (sequence) ->
+    console.log 'modalSequence', sequence
     unless _.isArray sequence then throw new Meteor.Error 415, 'sequence must be an array.'
     list = _.sortBy sequence,(modal) ->
         if modal.number? then return modal.number
         if modal.rank? then return modal.rank
         if modal.timestamp? then return modal.timstamp
+
+    console.log 'sequencelist', list
     b3.modalSequenceList = list
     b3.modalSequenceStep = 0
     b3.toModal b3.modalSequenceStep
@@ -158,6 +161,8 @@ b3.toModal = (step)->
         hasNext: hasNext
         hasPrevious: hasPrevious
         hasFinish: hasFinish
+        template: 'interactive'
+        single: 'sequence'
     }
     modal = b3.modalSequenceList[step] or {}
     _.defaults modal, defaults

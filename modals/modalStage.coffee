@@ -39,6 +39,7 @@ Template.modalStage.showModal = ->
         false
 
 Template.modalStage.isTemplate = (type)->
+    console.log 'isTemplate', type, @
     if @template is type then return true
     false
 
