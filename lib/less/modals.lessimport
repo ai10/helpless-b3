@@ -128,7 +128,7 @@
 @media screen and (min-width: @screen-tablet) {
 
   .modal-dialog {
-    left: 50%;
+    left: auto;
     right: auto;
     width: 600px;
     padding-top: 30px;
