@@ -8,8 +8,10 @@ Template.modalStage.rendered = ->
 Template.modalStage.showModal = ->
     m = Modals.findOne()
     if m?
+        #$(document.body).addClass('modal-open')
         true
     else
+        #$(document.body).removeClass('modal-open')
         false
 
 Template.modalStage.modals = ->
@@ -20,10 +22,14 @@ Template.modalInstance.rendered = ->
     console.log 'Modal Instance', @
 
 Template.modalInstance.height = ->
-    0.85*$(window).height()
+    hh = 0.82*$(window).height()
 
 Template.modalInstance.width = ->
-    0.85*$(window).width()
+    ww = 0.74*$(window).width()
+    width = switch
+        when ww > 760 then 760
+        else ww
+
 
 Template.modalInstance.top = ->
     nav = $('div.navbar').height()
