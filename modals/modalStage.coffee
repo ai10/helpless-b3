@@ -1,8 +1,6 @@
 Template.modalStage.created = ->
-    console.log 'createStage', @
 
 Template.modalStage.rendered = ->
-    console.log 'renderStage', @
     modalWidth = $('.modal-body').width()
 
 Template.modalStage.showModal = ->
@@ -19,7 +17,6 @@ Template.modalStage.modals = ->
     [m]
 
 Template.modalInstance.rendered = ->
-    console.log 'Modal Instance', @
 
 Template.modalInstance.height = ->
     hh = 0.82*$(window).height()
@@ -36,7 +33,6 @@ Template.modalInstance.top = ->
     nav-25
 
 Template.modalInstance.isSequence = ->
-    console.log 'isSequence', @isSequence
     @isSequence
 
 Template.modalInstance.events
@@ -49,7 +45,6 @@ Template.modalInstance.events
 
 
 Template.modalInstance.isTemplate = (type)->
-    console.log 'isTemplate', type, @
     if @template is type then return true
     false
 

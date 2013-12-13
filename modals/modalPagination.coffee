@@ -1,5 +1,4 @@
 Template.modalPagination.rendered = ->
-    console.log 'modalPagination', @
 
 Template.modalPagination.events
     'click li.nextModal': ->
