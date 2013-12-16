@@ -15,22 +15,38 @@
     aria-hidden="false"
     >
  <div class="modal-dialog" style="">
-     <div class="modal-content" style="">
-         <div class="modal-header">
+    <div class="modal-content" style="">
+         <div class="modal-header" style="border-bottom: 0px;">
              <button id="{{ _id }}" class="close" data-dismiss="modal">
                  <span class="close glyphicon glyphicon-remove"></span>
              </button>
-             <div class="col-sm-4 col-md-3 col-lg-3">
-                {{ title }}
+             <div class="row">
+                 {{ title }}
+                 <span class="badge">#{{ number }}</span>
              </div>
+   {{#if isSequence }}
+             <div class="row">
+                     <ul class="nav nav-tabs">
+                         {{#each sequenceItems }}
+                         <li class="question {{ active }}">
+                         <a class="question" id="{{ question }}" href="#">{{ number }}{{#if answered}}<span class="text-success glyphicon glyphicon-check"></span>{{else}}<span class="glyphicon glyphicon-unchecked"></span>{{/if}}</a>
+                         </li>
+                         {{/each}}
+                     </ul>
+             </div>
+    {{/if}}
+  
          </div><!-- /.modal header -->
          <div class="modal-body"
              style="">
-           {{#if isTemplate 'video' }}
+          {{#if isTemplate 'video' }}
              {{> videoModal }}
            {{/if}}
            {{#if isTemplate 'interactive' }}
              {{> interactiveCanvas }}
+           {{/if}}
+           {{#if isTemplate 'dashboard' }}
+             {{> dashboardModal }}
            {{/if}}
          </div><!-- /.modal-body -->
          <div class="modal-footer" style="margin: 5px 0px 0px 0px; padding: 5px;">

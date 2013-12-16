@@ -35,6 +35,10 @@ Template.modalInstance.top = ->
 Template.modalInstance.isSequence = ->
     @isSequence
 
+Template.modalInstance.sequenceItems = ->
+    console.log 'sequence items', @
+    lrs.questions.find { module: @parent }, { sort: { number: 1 }}
+
 Template.modalInstance.events
     'click button.close': ->
         Modals.remove @_id
@@ -43,6 +47,16 @@ Template.modalInstance.events
         id = $('div.modal').attr 'id'
         Modals.remove id
 
+    'click li.question': (e, t)->
+        e.preventDefault()
+        console.log 'question', @
+        number = @number - 1
+        b3.toModal number
+
+Template.modalInstance.active = ->
+    console.log 'b3sqstep', b3.modalSequenceStep
+    if @number is (b3.modalSequenceStep + 1) then return "active"
+    ""
 
 Template.modalInstance.isTemplate = (type)->
     if @template is type then return true
