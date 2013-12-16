@@ -22,7 +22,9 @@
              </button>
              <div class="row">
                  {{ title }}
+                 {{#if isSequence }}
                  <span class="badge">#{{ number }}</span>
+                 {{/if}}
              </div>
    {{#if isSequence }}
              <div class="row">
