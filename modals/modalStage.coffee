@@ -1,6 +1,7 @@
 Template.modalStage.created = ->
 
 Template.modalStage.rendered = ->
+    console.log 'modal stage', @
     modalWidth = $('.modal-body').width()
 
 Template.modalStage.showModal = ->
