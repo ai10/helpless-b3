@@ -53,8 +53,9 @@ Package.on_use(function (api) {
     
    
     api.add_files([
+    //'themes/spacelab.min.css',
     'themes/slate.min.css',
-    //'themes/cyborg.min.css',
+   // 'themes/cyborg.min.css',
     //'themes/yeti.css',
     //
     ], ['client']);
