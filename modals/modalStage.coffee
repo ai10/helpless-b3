@@ -1,7 +1,6 @@
 Template.modalStage.created = ->
 
 Template.modalStage.rendered = ->
-    console.log 'modal stage', @
     modalWidth = $('.modal-body').width()
 
 Template.modalStage.showModal = ->
@@ -20,12 +19,13 @@ Template.modalStage.modals = ->
 Template.modalInstance.rendered = ->
 
 Template.modalInstance.height = ->
-    hh = 0.82*$(window).height()
+    hh = $(window).height()
+    0.9*hh
 
 Template.modalInstance.width = ->
-    ww = 0.74*$(window).width()
+    ww = $(window).width()
     width = switch
-        when ww > 760 then 760
+        when ww > 800 then 800
         else ww
 
 
@@ -40,13 +40,19 @@ Template.modalInstance.sequenceItems = ->
     console.log 'sequence items', @
     lrs.questions.find { module: @parent }, { sort: { number: 1 }}
 
+Template.modalStage.events
+    'click div.modal': ->
+        id = $('div.modal').attr 'id'
+        console.log 'modal backdrop click', id
+        Modals.remove id
+
+    'click div.modal-content': (e, t)->
+        e.stopPropagation()
+
+
 Template.modalInstance.events
     'click button.close': ->
         Modals.remove @_id
-
-    'click div.modal-backdrop': ->
-        id = $('div.modal').attr 'id'
-        Modals.remove id
 
     'click li.question': (e, t)->
         e.preventDefault()
