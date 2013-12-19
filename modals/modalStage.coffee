@@ -37,13 +37,11 @@ Template.modalInstance.isSequence = ->
     @isSequence
 
 Template.modalInstance.sequenceItems = ->
-    console.log 'sequence items', @
     lrs.questions.find { module: @parent }, { sort: { number: 1 }}
 
 Template.modalStage.events
     'click div.modal': ->
         id = $('div.modal').attr 'id'
-        console.log 'modal backdrop click', id
         Modals.remove id
 
     'click div.modal-content': (e, t)->
@@ -61,7 +59,6 @@ Template.modalInstance.events
         b3.toModal number
 
 Template.modalInstance.active = ->
-    console.log 'b3sqstep', b3.modalSequenceStep
     if @number is (b3.modalSequenceStep + 1) then return "active"
     ""
 
