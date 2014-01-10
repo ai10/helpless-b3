@@ -36,6 +36,9 @@ Template.modalInstance.top = ->
 Template.modalInstance.isSequence = ->
     @isSequence
 
+Template.modalInstance.navPills = ->
+    @navPills
+
 Template.modalInstance.sequenceItems = ->
     lrs.questions.find { module: @parent }, { sort: { number: 1 }}
 

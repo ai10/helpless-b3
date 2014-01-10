@@ -1,6 +1,7 @@
 Dynamic navbar items.
 ---
 
+
     b3 = @b3
     @NavbarItems = NavbarItems = new Meteor.Collection null
 
@@ -21,7 +22,6 @@ Dynamic navbar items.
 
         @id = NavbarItems.insert options
         options = null
-        
         true
 
     NavItem::defaults = {
@@ -41,6 +41,7 @@ Dynamic navbar items.
     Template.navItems.items = ->
         navGroup = Router._currentController?.options?.navGroup or 'default'
         n = NavbarItems.find({ navGroup: navGroup }, { limit: 4 }).fetch()
+        console.log 'navgroup', navGroup, n
         n
 
     Template.navItem.isDropdown = ->

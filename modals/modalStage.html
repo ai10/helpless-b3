@@ -26,7 +26,18 @@
                  <span class="badge">#{{ number }}</span>
                  {{/if}}
              </div>
-   {{#if isSequence }}
+             {{#if hasNavigation }}
+             <div class="row">
+                 <ul class="nav nav-tabs pull-right">
+                     {{#each navPills }}
+                     <li id="{{ navId }}" class="{{ activeNav }}">
+                     <a href="{{ navLink }}">{{ navName }}</a>
+                     </li>
+                     {{/each}}
+                 </ul>
+             </div>
+             {{/if}}
+             {{#if isSequence }}
              <div class="row">
                      <ul class="nav nav-tabs">
                          {{#each sequenceItems }}
@@ -36,12 +47,12 @@
                          {{/each}}
                      </ul>
              </div>
-    {{/if}}
+             {{/if}}
   
          </div><!-- /.modal header -->
          <div class="modal-body"
              style="">
-          {{#if isTemplate 'video' }}
+           {{#if isTemplate 'video' }}
              {{> videoModal }}
            {{/if}}
            {{#if isTemplate 'interactive' }}
