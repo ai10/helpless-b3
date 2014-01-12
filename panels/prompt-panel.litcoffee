@@ -95,6 +95,11 @@ Prompt panel w/ bootstrap 3, Meteor.
              e.preventDefault()
              Prompt::remove @_id
 
+         'click button.confirm': (e, t)->
+             e.preventDefault()
+             console.log 'button confirm'
+             Prompt::remove @_id
+
 
     Template.promptStage.prompts = ->
         Prompts.find({}).fetch()
