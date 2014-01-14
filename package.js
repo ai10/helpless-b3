@@ -49,6 +49,7 @@ Package.on_use(function (api) {
     'modals/modalPagination.coffee',
     'tooltips/tooltip-b3.html',
     'tooltips/tooltip-b3.coffee',
+    'helpers/parseform.litcoffee'
     ], ['client']);
     
    
