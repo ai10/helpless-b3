@@ -13,6 +13,20 @@
             <fieldset>
                 <legend><span class="{{ icon }}"></span>&nbsp;{{ legend }}</legend>
                 <div class="well">
+                {{#if hasTags }}
+                <div class="btn-group btn-group-xs">
+                    {{#each tagsList }}
+                    <button 
+                        id="{{ tag }}" 
+                        type="button"
+                        value="{{ target }}"
+                        class="remove btn btn-default">
+                      <span class="text-danger glyphicon glyphicon-remove"></span>
+                     {{ tag }}
+                  </button>
+                    {{/each}}
+                </div>
+                {{/if}}
                 {{#if dialog }}
                 <div class="form-group">
                     <label 
@@ -29,12 +43,12 @@
                 </div><!-- /.form-group -->
                 {{/if}}
                 {{#if confirmation }}
-                <button type="button" 
+                <button id="{{ selectClass }}" type="button" 
                     class="{{ selectClass }} btn btn-block {{ buttonClass }}">
                     <span class="{{ buttonIcon }}">{{ buttonText }} </span>
                 </button>
                 {{#if showAltButton }}
-                <button type="button" class="{{ altSelectClass }} btn btn-block {{ altButtonClass }}">
+                <button id="{{ altSelect }}" type="button" class="{{ altSelect }} btn btn-block {{ altButtonClass }}">
                     <span class="{{ altButtonIcon }}">{{ altButtonText }}</span>
                 </button>
                 {{/if}}

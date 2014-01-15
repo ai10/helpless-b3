@@ -30,12 +30,13 @@ Prompt panel w/ bootstrap 3, Meteor.
         legend: "Email identity."
         placeholder: ""
         buttonClass: "btn btn-info"
-        selectClass: "selectClass"
+        inputSelect: 'inputSelect'
+        buttonSelect: "buttonSelect"
         buttonLink: "#"
         buttonText: " confirm"
         buttonIcon: "glyphicon glyphicon-send"
         showAltButton: false
-        altSelectClass: "altSelectClass"
+        altSelect: "altSelectClass"
         altButtonClass: "btn btn-default"
         altButtonLink: "#"
         altButtonText: " cancel"
@@ -61,6 +62,20 @@ Prompt panel w/ bootstrap 3, Meteor.
         promptEmail: Prompt::scurry {
             inputType: 'email'
             placeholder: 'input email'
+        }
+        promptTag: Prompt::scurry {
+            panelType: 'panel-default'
+            headerIcon: 'glyphicon glyphicon-tags'
+            header: 'Apply tags.'
+            text: 'Short labels for the content item.'
+            legendIcon: 'glyphicon glyphicon-tag'
+            legend: 'Tag'
+            buttonText: 'Tag.'
+            buttonIcon: 'glyphicon glyphicon-tag'
+            selectClass: 'applyTag'
+            label: 'Apply a thoughtful tag.'
+            hasTags: true
+            validation: 'parsley-maxwords=1'
         }
     }
 
@@ -89,6 +104,15 @@ Prompt panel w/ bootstrap 3, Meteor.
                 $f?.focus()
             ,
                 100
+    
+    Template.b3Prompt.tagsList = ->
+        target = xAPI.activities.findOne({ _id: @target })
+        console.log 'target', target
+        _.map target.tags, (t) ->
+            {
+                tag: t
+                target: target._id
+            }
 
     Template.b3Prompt.events
          'click button.close': (e, t)->
@@ -100,6 +124,39 @@ Prompt panel w/ bootstrap 3, Meteor.
              console.log 'button confirm'
              Prompt::remove @_id
 
+         'click button#applyTag': (e, t) ->
+             e.preventDefault()
+             target = @target
+             applyTag(e, t, target)
+
+         'click button.remove': (e, t) ->
+             e.preventDefault()
+             tag = e.target.id
+             target = e.target.value
+             console.log 'remove', tag, target
+             u = xAPI.activities.update { _id: target }, {
+                 $pull: { tags: tag }
+             }
+             console.log 'update', u
+             true
+         'keyup input.applyTag': (e, t) ->
+             unless e.keyCode is 13
+                 return
+             target = @target
+             applyTag(e, t, target)
+
+    applyTag = (e, t, target) ->
+        f = t.firstNode or e.target.form
+        $i = $(f).find('input.form-control')
+        v = $i.parsley('validate')
+        console.log 'valid', v
+        tag = $i[0].value
+        console.log 'applytag', tag, target
+        u = xAPI.activities.update { _id: target }, {
+                 $addToSet: { tags: tag }
+        }
+        console.log 'update', u
+        true
 
     Template.promptStage.prompts = ->
         Prompts.find({}).fetch()
