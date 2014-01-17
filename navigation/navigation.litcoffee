@@ -14,6 +14,9 @@ Navigation
         Meteor.logout()
         Router.go "/"
 
+    Template.navigator.logo = ->
+        '/packages/interactive-media/logo.png'
+
     Template.navigator.userEmail = () ->
       if Meteor.user()
         Meteor.user().emails[0].address
