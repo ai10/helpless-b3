@@ -80,7 +80,6 @@
                          required title="{{ label }}" 
                          />
                 </div><!-- /.form-group -->
-             {{/if}}
              {{#if confirmation}}
                  <div class="form-group">
                      <button type="button" id="{{ selectId }}" class="btn {{ buttonClass }}"><span class="{{ buttonIcon }} ">{{ buttonText }} </span>
@@ -90,8 +89,10 @@
                  <span class="{{ altButtonIcon }}">{{ altButtonText }}</span>
              </button>
              {{/if}}
+             </div>
              {{/if}}
-       </form>
+         </form>
+         {{/if}}
        {{#if isSequence }}
          {{> modalPagination }}
        {{/if}}

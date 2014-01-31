@@ -1,0 +1,7 @@
+<template name="ip">
+{{#if ipEdit key collection prefix }}
+<form data-id="{{ id }}" data-key="{{ key }}" data-transform="{{ transform }}" data-collection="{{ collection }}"><input type="text" value="{{ result key collection }}"><button type="submit" class="btn btn-xs">update:{{key}}</button></form>
+{{else}}
+<span id="{{ id }}" data-key="{{ key }}">{{ result key collection }}</span>
+{{/if}}
+</template>
