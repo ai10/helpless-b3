@@ -36,9 +36,9 @@ In-place editable field
               key = e.target.dataset.key
               id = e.target.dataset.id
               collection = e.target.dataset.collection
-              transform = e.target.dataset.transform
-              if transform?
-                  key = transform+'.'+key
+              prefix = e.target.dataset.prefix
+              if prefix?
+                  key = prefix+'.'+key
               query = {}
               query[key] = value
               collection_keys = collection.split('.')
