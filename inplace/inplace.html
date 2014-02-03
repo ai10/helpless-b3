@@ -1,6 +1,6 @@
 <template name="ip">
 {{#if ipEdit field collection prefix }}
-<form data-id="{{ id }}" data-field="{{ field }}" data-prefix="{{ prefix }}" data-collection="{{ collection }}"><input type="text" value="{{ result field collection }}"><button type="submit" class="btn btn-xs">update:{{ field }}</button></form>
+<form data-id="{{ id }}" data-field="{{ field }}" data-prefix="{{ prefix }}" data-collection="{{ collection }}"><input class="form-control" type="text" value="{{ result field collection }}"><button type="submit" class="btn btn-default btn-xs">update:{{ field }}</button></form>
 {{else}}
 <span id="{{ id }}" data-field="{{ field }}">{{ result field collection }}</span>
 {{/if}}
