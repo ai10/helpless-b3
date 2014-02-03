@@ -6,14 +6,14 @@ In-place editable field
           console.log 'ip', this, field
           Session.set 'ipEdit:'+@_id, false
 
-      Template.ip.result = (key, collection)->
-          console.log 'result', key, collection, this
-          if @[key] then return @[key]
+      Template.ip.result = (field, collection)->
+          console.log 'result', field, collection, this
+          if @[field] then return @[field]
           'void result'
 
-      Template.ip.ipEdit = (key, collection)->
-          console.log 'ipEdit', this, key, collection
-          Session.get 'idTag'+@_id+key
+      Template.ip.ipEdit = (field, collection)->
+          console.log 'ipEdit', this, field, collection
+          Session.get 'idTag'+@_id+field
 
       Template.ip.id = ->
           console.log 'ip id', this
@@ -26,21 +26,21 @@ In-place editable field
               unless Meteor.user() then return
               console.log 'double id', e.target
               console.log 'double click', this
-              idTag = 'idTag'+@_id+e.target.dataset?.key
+              idTag = 'idTag'+@_id+e.target.dataset?.field
               Session.set idTag, true
               'frodo'
 
           'submit form': (e, t) ->
               e.preventDefault()
               value = e.target[0].value
-              key = e.target.dataset.key
+              field = e.target.dataset.field
               id = e.target.dataset.id
               collection = e.target.dataset.collection
               prefix = e.target.dataset.prefix
               if prefix?
-                  key = prefix+'.'+key
+                  field = prefix+'.'+field
               query = {}
-              query[key] = value
+              query[field] = value
               collection_keys = collection.split('.')
               console.log 'ck', collection_keys
               space = window
@@ -49,6 +49,6 @@ In-place editable field
                   space = space[k]
               console.log 'space', space, query
               space.update({ _id: id }, { $set: query })
-              idTag = 'idTag'+@_id+e.target.dataset.key
+              idTag = 'idTag'+@_id+e.target.dataset.field
               Session.set idTag, false
               'yo'
