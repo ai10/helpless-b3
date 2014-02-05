@@ -29,7 +29,9 @@ Modal = (options)->
         id = oldA?._id
 
     if id?
-        Modals.update id, a
+        console.log 'update', a
+        x = _.omit a, '_id'
+        Modals.update id, x
         if b3.timeouts[id]?
             clearTimeout b3.timeouts[id]
         if b3.alarms[id]?
