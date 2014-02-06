@@ -57,7 +57,6 @@ Template.modalInstance.events
 
     'click li.question': (e, t)->
         e.preventDefault()
-        console.log 'question', @
         number = @number - 1
         b3.toModal number
 

@@ -29,7 +29,6 @@ Modal = (options)->
         id = oldA?._id
 
     if id?
-        console.log 'update', a
         x = _.omit a, '_id'
         Modals.update id, x
         if b3.timeouts[id]?

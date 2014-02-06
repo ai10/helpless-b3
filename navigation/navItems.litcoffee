@@ -11,7 +11,6 @@ Dynamic navbar items.
 
         _.defaults options, @defaults
 
-
         if options.single?
             oldN = NavbarItems.findOne { single: options.single }
             if oldN?
@@ -40,9 +39,7 @@ Dynamic navbar items.
 
     Template.navItems.items = ->
         navGroup = Router._currentController?.options?.navGroup or 'default'
-        n = NavbarItems.find({ navGroup: navGroup }, { limit: 4 }).fetch()
-        console.log 'navgroup', navGroup, n
-        n
+        NavbarItems.find({ navGroup: navGroup }, { limit: 4 }).fetch()
 
     Template.navItem.isDropdown = ->
         @isDropdown
