@@ -239,6 +239,12 @@ Template.b3Alert.rendered = ->
         ,
             100
 
+Template.b3Alert.verticalOffset= ->
+    scrollTop = 0
+    if /top/i.test(@region)
+        scrollTop = $(window).scrollTop()+ 70
+    scrollTop
+
 Template.b3Alert.events
     'click button.close': (e, t) ->
         e.preventDefault()
