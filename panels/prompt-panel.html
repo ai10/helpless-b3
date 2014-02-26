@@ -11,7 +11,7 @@
     <div class="panel-body">
         <form class="form-horizontal">
             <fieldset>
-                <legend><span class="{{ icon }}"></span>&nbsp;{{ legend }}</legend>
+                <legend><span class="{{ headerIcon }}"></span>&nbsp;{{ legend }}</legend>
                 <div class="well">
                 {{#if hasTags }}
                 <div class="btn-group btn-group-xs">
@@ -37,7 +37,7 @@
                     class="{{ selectClass }} form-control" 
                     id="{{ _id }}"
                     placeholder="{{ placeholder }}"
-                    value="{{ value }}"
+                    value="{{ $value }}"
                     {{ validation }}
                     required title="{{ label }}">
                 </div><!-- /.form-group -->

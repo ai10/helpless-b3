@@ -4,6 +4,19 @@ b3.alarms = {}
 b3.hoverAfters = {}
 Alerts = new Meteor.Collection null
 
+Template.b3Alert.anchored = ->
+    if @routeTo?
+        return true
+    false
+
+Template.b3Alert.events
+    'click a#b3AlertAnchor': (e, t)->
+        e.preventDefault()
+        e.stopPropagation()
+        if @routeTo?
+            routeTo = @routeTo
+            Router.go routeTo
+        Alert::remove(@_id)
 
 Alert = (options)->
     if not (@ instanceof Alert) then return new Alert options

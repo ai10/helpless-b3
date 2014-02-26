@@ -6,7 +6,13 @@
             <span class="close glyphicon glyphicon-remove"></span>
         </button>
         {{/unless}}
-        <span class="label label-{{type}}">{{ header }}</span> <span class="text-center">{{text}}</span>
+        {{#if anchored }}
+        <a id='b3AlertAnchor' data-route="{{ routeTo }}" href="#">
+        <span class="label label-{{type}}">{{ header }}</span><span class="text-center">{{text}}</span>
+    </a>
+        {{else}}
+        <span class="label label-{{type}}">{{ header }}</span><span class="text-center">{{text}}</span>
+        {{/if}}
     <form role="form">
              {{#if dialog }}
                 <div class="form-group">

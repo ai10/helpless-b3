@@ -10,7 +10,7 @@ Prompt panel w/ bootstrap 3, Meteor.
          _.defaults options, @defaults
 
          oldP = Prompts.findOne {}
-         
+         console.log 'Prompt Options', options
          if oldP?._id?
              Prompts.update oldP._id, options
 
@@ -23,6 +23,7 @@ Prompt panel w/ bootstrap 3, Meteor.
         header: "Authentication."
         text: ""
         type: 'info'
+        selectClass: 'selectClass'
         labelType: 'info'
         dialog: true
         confirmation: true
@@ -42,7 +43,7 @@ Prompt panel w/ bootstrap 3, Meteor.
         altButtonText: " cancel"
         altButtonIcon: "glyphicon glyphicon-remove-sign"
         inputType: "text"
-        value: ""
+        $value: ""
         label: "Please input your email."
         validation: ""
     }
@@ -94,9 +95,13 @@ Prompt panel w/ bootstrap 3, Meteor.
     Prompt::clearAll = ->
         Prompts.remove {}
 
+    Template.b3Prompt.created = ->
+        console.log 'b3PromptCreated', this
+
     Template.b3Prompt.rendered = ->
+        console.log 'b3promptRendered', this
         if @data.dialog
-            if @data.value.length > 1 then return
+            if @data.$value.length > 1 then return
             first = @firstNode
             setTimeout =>
                 $f = $(first).find('input')
