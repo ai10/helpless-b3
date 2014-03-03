@@ -3,13 +3,15 @@ In-place editable field
 
 
       Template.ip.created = (field)->
+          console.log 'ip created', this, field
           Session.set 'ipEdit:'+@_id, false
 
-      Template.ip.result = (field, collection)->
-          if @[field] then return @[field]
-          'void result'
+      Template.ip.result = (parent)->
+          if parent[@field] then return parent[@field]
+          'void compound'
 
-      Template.ip.ipEdit = (field, collection)->
+      Template.ip.ipEdit = (parent)->
+          console.log 'ip edit', this, sup
           Session.get 'idTag'+@_id+field
 
       Template.ip.id = ->
