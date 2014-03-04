@@ -25,6 +25,7 @@ Package.on_use(function (api) {
     'lib/js/collapse.js',
     'b3.less',
     'helpless.html',
+    'inplace/inplace.css',
     'inplace/inplace.html',
     'inplace/inplace.litcoffee',
     'navigation/navigation.html',
