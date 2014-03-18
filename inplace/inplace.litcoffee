@@ -3,19 +3,15 @@ In-place editable field
 
 
       Template.ip.created = (field)->
-          console.log 'ip created', this, field
           Session.set 'ipEdit:'+@_id, false
 
       Template._ip.created = ->
-          console.log '_ip created', this, arguments
 
       Template._ip.result = ->
-          console.log '_ip result', this
           if @parent[@data.field] then return @parent[@data.field]
           'void compound'
 
       Template._ip.ipEdit = ->
-          console.log 'ip edit', this
           Session.get 'idTag'+@parent._id+@data.field
 
       Template._ip.id = ->
@@ -35,16 +31,18 @@ In-place editable field
           'void'
 
       Template._ip.inplace = ->
-          unless Meteor.user() then return ''
+          role = @data.role || 'any'
+          unless Sentinel.allow role then return ''
           'inplace_edit'
 
       Template._ip.events
           'dblclick span': (e, t)->
               e.preventDefault()
-              console.log 'dblclick _ip', e
-              unless Meteor.user() then return
+              role = @data.role || 'any'
+              user = Meteor.user()
+              console.log 'role', role, user
+              unless Sentinel.allow(role) then return
               idTag = 'idTag'+@parent._id+e.target.dataset?.field
-              console.log idTag
               Session.set idTag, true
               'frodo'
 

@@ -99,7 +99,6 @@ Prompt panel w/ bootstrap 3, Meteor.
         console.log 'b3PromptCreated', this
 
     Template.b3Prompt.rendered = ->
-        console.log 'b3promptRendered', this
         if @data.dialog
             if @data.$value.length > 1 then return
             first = @firstNode
@@ -112,7 +111,6 @@ Prompt panel w/ bootstrap 3, Meteor.
     
     Template.b3Prompt.tagsList = ->
         target = xAPI.activities.findOne({ _id: @target })
-        console.log 'target', target
         _.map target.tags, (t) ->
             {
                 tag: t
