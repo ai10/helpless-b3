@@ -117,7 +117,7 @@ Modal::clearAll = ->
 
 Modal::show = (modal)->
     if typeof modal is 'object'
-        Modals.update modal, { visisble: 'visible' }
+        Modals.update modal, { visible: 'visible' }
 
 
 modalCurries = {
