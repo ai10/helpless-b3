@@ -104,7 +104,8 @@ Prompt panel w/ bootstrap 3, Meteor.
             first = @firstNode
             setTimeout =>
                 $f = $(first).find('input')
-                $f?.parsley('destroy')?.parsley b3.parsley
+                $f?.parsley()?.destroy()
+                $f?.parsley b3.parsley
                 $f?.focus()
             ,
                 100
