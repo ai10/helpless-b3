@@ -247,7 +247,8 @@ Template.b3Alert.rendered = ->
         first = @firstNode
         setTimeout =>
             $f = $(first).find('input')
-            $f?.parsley('destroy')?.parsley b3.parsley
+            $f?.parsley()?.destroy()
+            $f?.parsley? b3.parsley
             $f?.focus()
         ,
             100
